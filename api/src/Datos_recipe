@@ -1,0 +1,287 @@
+{
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": true,
+    "dairyFree": true,
+    "veryHealthy": true,
+    "cheap": false,
+    "veryPopular": false,
+    "sustainable": false,
+    "weightWatcherSmartPoints": 2,
+    "gaps": "no",
+    "lowFodmap": false,
+    "aggregateLikes": 0,
+    "spoonacularScore": 88.0,
+    "healthScore": 84.0,
+    "creditsText": "Martha Stewart",
+    "sourceName": "Martha Stewart",
+    "pricePerServing": 138.24,
+    "extendedIngredients": [
+        {
+            "id": 15001,
+            "aisle": "Canned and Jarred;Seafood",
+            "image": "anchovies.jpg",
+            "consistency": "solid",
+            "name": "anchovy",
+            "nameClean": "boquerones",
+            "original": "4 anchovy fillets, each quartered",
+            "originalName": "anchovy fillets, each quartered",
+            "amount": 4.0,
+            "unit": "fillet",
+            "meta": [
+                "quartered"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 4.0,
+                    "unitShort": "fillet",
+                    "unitLong": "fillets"
+                },
+                "metric": {
+                    "amount": 4.0,
+                    "unitShort": "fillet",
+                    "unitLong": "fillets"
+                }
+            }
+        },
+        {
+            "id": 11215,
+            "aisle": "Produce",
+            "image": "garlic.png",
+            "consistency": "solid",
+            "name": "garlic",
+            "nameClean": "garlic",
+            "original": "1 clove garlic, very thinly sliced",
+            "originalName": "garlic, very thinly sliced",
+            "amount": 1.0,
+            "unit": "clove",
+            "meta": [
+                "very thinly sliced"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "clove",
+                    "unitLong": "clove"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "clove",
+                    "unitLong": "clove"
+                }
+            }
+        },
+        {
+            "id": 4053,
+            "aisle": "Oil, Vinegar, Salad Dressing",
+            "image": "olive-oil.jpg",
+            "consistency": "liquid",
+            "name": "olive oil",
+            "nameClean": "olive oil",
+            "original": "1 tablespoon plus 1 teaspoon extra-virgin olive oil",
+            "originalName": "extra-virgin olive oil",
+            "amount": 1.0,
+            "unit": "tablespoon",
+            "meta": [
+                "extra-virgin"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "Tbsp",
+                    "unitLong": "Tbsp"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "Tbsp",
+                    "unitLong": "Tbsp"
+                }
+            }
+        },
+        {
+            "id": 4053,
+            "aisle": "Oil, Vinegar, Salad Dressing",
+            "image": "olive-oil.jpg",
+            "consistency": "liquid",
+            "name": "olive oil",
+            "nameClean": "olive oil",
+            "original": "1 Tbsp plus 1 tsp extra-virgin olive oil",
+            "originalName": "extra-virgin olive oil",
+            "amount": 1.0,
+            "unit": "Tbsp",
+            "meta": [
+                "extra-virgin"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "Tbsp",
+                    "unitLong": "Tbsp"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "Tbsp",
+                    "unitLong": "Tbsp"
+                }
+            }
+        },
+        {
+            "id": 11821,
+            "aisle": "Produce",
+            "image": "red-pepper.jpg",
+            "consistency": "solid",
+            "name": "red bell peppers",
+            "nameClean": "red pepper",
+            "original": "2 medium red bell peppers, (about 7 ounces each)",
+            "originalName": "medium red bell peppers, (about each)",
+            "amount": 14.0,
+            "unit": "ounces",
+            "meta": [
+                "red"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 14.0,
+                    "unitShort": "oz",
+                    "unitLong": "ounces"
+                },
+                "metric": {
+                    "amount": 396.893,
+                    "unitShort": "g",
+                    "unitLong": "grams"
+                }
+            }
+        },
+        {
+            "id": 11821,
+            "aisle": "Produce",
+            "image": "red-pepper.jpg",
+            "consistency": "solid",
+            "name": "red bell peppers",
+            "nameClean": "red pepper",
+            "original": "2 medium red bell peppers, (about 7 ozs each)",
+            "originalName": "medium red bell peppers, (about each)",
+            "amount": 14.0,
+            "unit": "ozs",
+            "meta": [
+                "red"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 14.0,
+                    "unitShort": "oz",
+                    "unitLong": "ounces"
+                },
+                "metric": {
+                    "amount": 396.893,
+                    "unitShort": "g",
+                    "unitLong": "grams"
+                }
+            }
+        }
+    ],
+    "id": 48,
+    "title": "Roasted Red Peppers With Anchovies And Olive Oil",
+    "readyInMinutes": 83,
+    "servings": 4,
+    "sourceUrl": "http://www.marthastewart.com/346875/roasted-red-peppers-with-anchovies-and-o",
+    "image": "https://spoonacular.com/recipeImages/48-556x370.jpg",
+    "imageType": "jpg",
+    "summary": "You can never have too many side dish recipes, so give Roasted Red Peppers With Anchovies And Olive Oil a try. This recipe makes 4 servings with <b>135 calories</b>, <b>4g of protein</b>, and <b>8g of fat</b> each. For <b>$1.38 per serving</b>, this recipe <b>covers 17%</b> of your daily requirements of vitamins and minerals. 1 person were glad they tried this recipe. A mixture of anchovy, anchovy, bell peppers, and a handful of other ingredients are all it takes to make this recipe so yummy. It is a good option if you're following a <b>caveman, gluten free, dairy free, and primal</b> diet. From preparation to the plate, this recipe takes around <b>1 hour and 23 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 89%</b>. This score is awesome. Similar recipes are <a href=\"https://spoonacular.com/recipes/roasted-peppers-with-anchovies-58\">Roasted Peppers With Anchovies</a>, <a href=\"https://spoonacular.com/recipes/roasted-red-peppers-two-roasting-techniques-and-how-marinate-them-914371\">Roasted Red Peppers: Two Roasting Techniques and How Marinate Them</a>, and <a href=\"https://spoonacular.com/recipes/38-power-foods-roasted-red-peppers-with-anchovies-525082\">{38 Power Foods} Roasted Red Peppers with Anchovies</a>.",
+    "cuisines": [],
+    "dishTypes": [
+        "side dish"
+    ],
+    "diets": [
+        "gluten free",
+        "dairy free",
+        "paleolithic",
+        "primal",
+        "pescatarian"
+    ],
+    "occasions": [],
+    "winePairing": {},
+    "instructions": "Transfer peppers to a large bowl, and cover immediately with plastic wrap. Set aside to steam, about 15 minutes. Peel peppers; discard skins. Remove stems, seeds, and ribs, and cut each pepper lengthwise into 8 strips. Transfer to a small non-reactive bowl.",
+    "analyzedInstructions": [
+        {
+            "name": "",
+            "steps": [
+                {
+                    "number": 1,
+                    "step": "Transfer peppers to a large bowl, and cover immediately with plastic wrap. Set aside to steam, about 15 minutes. Peel peppers; discard skins.",
+                    "ingredients": [
+                        {
+                            "id": 10111333,
+                            "name": "peppers",
+                            "localizedName": "peppers",
+                            "image": "green-pepper.jpg"
+                        },
+                        {
+                            "id": 10018364,
+                            "name": "wrap",
+                            "localizedName": "wrap",
+                            "image": "flour-tortilla.jpg"
+                        }
+                    ],
+                    "equipment": [
+                        {
+                            "id": 404730,
+                            "name": "plastic wrap",
+                            "localizedName": "plastic wrap",
+                            "image": "plastic-wrap.jpg"
+                        },
+                        {
+                            "id": 404783,
+                            "name": "bowl",
+                            "localizedName": "bowl",
+                            "image": "bowl.jpg"
+                        }
+                    ],
+                    "length": {
+                        "number": 15,
+                        "unit": "minutes"
+                    }
+                },
+                {
+                    "number": 2,
+                    "step": "Remove stems, seeds, and ribs, and cut each pepper lengthwise into 8 strips.",
+                    "ingredients": [
+                        {
+                            "id": 1002030,
+                            "name": "pepper",
+                            "localizedName": "pepper",
+                            "image": "pepper.jpg"
+                        },
+                        {
+                            "id": 93818,
+                            "name": "seeds",
+                            "localizedName": "seeds",
+                            "image": "sunflower-seeds.jpg"
+                        },
+                        {
+                            "id": 23236,
+                            "name": "ribs",
+                            "localizedName": "ribs",
+                            "image": "ribs.png"
+                        }
+                    ],
+                    "equipment": []
+                },
+                {
+                    "number": 3,
+                    "step": "Transfer to a small non-reactive bowl.",
+                    "ingredients": [],
+                    "equipment": [
+                        {
+                            "id": 404783,
+                            "name": "bowl",
+                            "localizedName": "bowl",
+                            "image": "bowl.jpg"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "originalId": null
+}
