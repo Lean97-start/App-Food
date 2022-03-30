@@ -20,23 +20,33 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     score: { //Puntaje
-      type: DataTypes.FLOAT
+      type: DataTypes.FLOAT,
+      allowNull: true
     },
     healthScore: { //nivel de "comida saludable"
-      type: DataTypes.FLOAT
+      type: DataTypes.FLOAT,
+      allowNull: true
     },
     step_by_step: { //Paso a paso de la receta
-      type: DataTypes.TEXT //No se cuantos pasos puede ocupar la receta, por lo cual, le asigno un text para que el usuario escriba tanto como quiera.
+      type: DataTypes.TEXT, //No se cuantos pasos puede ocupar la receta, por lo cual, le asigno un text para que el usuario escriba tanto como quiera.
+      allowNull: true
     },
     image: {
-      type: DataTypes.STRING //Es un string el cual tiene la dirección de la foto.
+      type: DataTypes.STRING, //Es un string el cual tiene la dirección de la foto.
+      allowNull: true
     },
     readyInMinutes: {
-      type: DataTypes.INTEGER //Tiempo en el que tarda en estar listo.
+      type: DataTypes.INTEGER, //Tiempo en el que tarda en estar listo.
+      allowNull: true
     },
     dishTypes: {
-      type: DataTypes.INTEGER //Tipo de plato de la receta
+      type: DataTypes.INTEGER, //Tipo de plato de la receta
+      allowNull: true
     },
+    // ingredients:{
+    //   type: DataTypes.TEXT,
+    //   allowNull: true  
+    // },
     inBD: { //Verifico si está en la BD la receta.
       type: DataTypes.BOOLEAN,
       defaultValue: true,

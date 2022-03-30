@@ -33,11 +33,12 @@ router.get('/recipes', async (req, res) => { //FUNCIONA
                 dishTypes: recipe.dishTypes,
                 step_by_step: recipe.instructions,
                 image: recipe.image,
+                // ingredients: recipe.extendedIngredients.map(ingredient => ingredient.original),
                 type_diets: recipe.diets
             }
         });
         const recipes = infoAPI.concat(searchname_BD);
-        if(!name) res.status(200).json(recipes); //Si no me viene ningun nombre por query, que devuelva todas las recetas.
+        if(!name) return res.status(200).json(recipes); //Si no me viene ningun nombre por query, que devuelva todas las recetas.
         const filterRecipe = recipes.filter(recipe => recipe.name.toUpperCase().includes(name.toUpperCase())); //Uppercase porque sino puede que no encuentre coincidencias.
         (filterRecipe.length > 0)? res.status(200).json(filterRecipe) : res.status(404).json({msg: "No se ha encontrado ninguna receta con ese nombre."});
     }catch(e){console.log(e)}
