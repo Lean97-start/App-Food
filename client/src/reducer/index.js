@@ -10,7 +10,7 @@ const rootReducer = (state = initialValues, {type, payload}) => {
     switch(type){
         case GET_TYPES_DIETS: 
             //Me traigo todos los tipos de dieta posible
-            return {...state, diets: payload.diets};
+            return {...state, types_diets: payload.data};
 
         case GET_RECIPES: 
             //Valido si lo que me viene es un ID y le paso solo la receta que pedí

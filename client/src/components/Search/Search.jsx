@@ -11,25 +11,21 @@ export function Search(props){
     }
     function handleSubmit(datos){
         datos.preventDefault();
-        props.getRecipe(state);
+        props.getRecipe({data: `?name=${state}`, type_passed: 'query'});
         setState("");
     }
-
     return(
         <form onSubmit={(event) => {handleSubmit(event)}}>
             <label className='labelsearchName' htmlFor='inpName'>Buscar por nombre: </label>
-            <input type='text' id='inpName' placeholder='Nombre...' onChange={handleChange}></input>
+            <input type='text' id='inpName' placeholder='Nombre...' value={state} onChange={handleChange}></input>
             <button type='submit'>Buscar</button>
         </form>
     )
 }
 
-export const mapStateToProps = (state)=>{
-    return {recipesSearch: state.recipes}
-}
 export const mapDispatchToProps = (dispatch)=>{
     return {getRecipe: (valueType) => dispatch(getRecipe(valueType))}
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(null, mapDispatchToProps)(Search)

@@ -13,7 +13,7 @@ export function Recipes(props){
         <div className='homeRecipes'>
             <h1>Recipes</h1>
             <div className='cardsHome'>
-                {!props.recipes? null: props.recipes.map(({id,name,image,type_diets}) => (
+                {/* {!props.recipes? null: props.recipes.map(({id,name,image,type_diets}) => (
                             // Renderizo cada una de las recetas
                             <RecipeCard 
                                 key={id}
@@ -23,7 +23,7 @@ export function Recipes(props){
                             /> 
                         )   
                     )
-                }
+                } */}
             </div>
         </div>
     )

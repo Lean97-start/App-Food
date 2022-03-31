@@ -23,8 +23,8 @@ export function getRecipe(payload){
         }
         else{    
             //payload.data me da el valor del query o el id. Y en type_passed le digo explicitamente que es. 
-            return axios.get(`${local}recipes/${payload.data}`)
-            .then(recipes => dispatch({type: GET_RECIPES, payload: {recipes, type_passed: payload.type_passed}}))
+            return axios.get(`${local}recipes${payload.data}`)
+            .then(recipes => dispatch({type: GET_RECIPES, payload: {recipes: recipes, type_passed: payload.type_passed}}))
             .catch(e => console.log(e))}
     }
 
