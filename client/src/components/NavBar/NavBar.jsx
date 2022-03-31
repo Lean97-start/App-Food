@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import Search from '../Search/Search';
 export default function NavBar(){
     return(
         <nav className='navBar'>
@@ -10,7 +10,7 @@ export default function NavBar(){
             <div className='nav_createRecipe'>
                 <NavLink to='/createRecipe'><h3>Crear Receta</h3></NavLink>
             </div>
-
+            <Search/>
         </nav>
     )
 }

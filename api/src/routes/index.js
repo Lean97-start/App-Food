@@ -20,7 +20,7 @@ router.get('/recipes', async (req, res) => { //FUNCIONA
     const name = req.query.name; //Obtengo el nombre de la receta que me viene por query.
     try{
         const searchname_BD = await Recipe.findAll({include:[{model: Type_diet}]}); //Search a la base de datos de todas las recetas
-        const searchname_API = await axios('https://api.spoonacular.com/recipes/complexSearch?apiKey=1323a609c8b8420aba666bd2d26f2fb8&addRecipeInformation=true&number=100');
+        const searchname_API = await axios('https://api.spoonacular.com/recipes/complexSearch?apiKey=43776671d5c54a22a99c73b95949befb&addRecipeInformation=true&number=100');
         const infoAPI = await searchname_API.data.results.map(recipe => {
             addType(recipe.diets)
             return {
@@ -52,7 +52,7 @@ router.get("/recipes/:id", async (req, res) => { //FUNCIONA
     let valor;
     if (regexAPI.test(id_rec)) {
         try{
-            valor = await axios(`https://api.spoonacular.com/recipes/${id_rec}/information?apiKey=1323a609c8b8420aba666bd2d26f2fb8`);
+            valor = await axios(`https://api.spoonacular.com/recipes/${id_rec}/information?apiKey=43776671d5c54a22a99c73b95949befb`);
             let rec = valor.data;
             return res.status(200).json({
                 id: rec.id,
