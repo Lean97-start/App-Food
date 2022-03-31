@@ -2,28 +2,18 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import { getRecipe } from '../../actions';
 import RecipeCard from '../Recipes/RecipeCard.jsx';
-
+import Pagination from '../Pagination/Pagination.jsx';
 
 export function Recipes(props){
     useEffect(()=>{props.getRecipe()},[])
-
+    
     
    
     return(
         <div className='homeRecipes'>
             <h1>Recipes</h1>
             <div className='cardsHome'>
-                {/* {!props.recipes? null: props.recipes.map(({id,name,image,type_diets}) => (
-                            // Renderizo cada una de las recetas
-                            <RecipeCard 
-                                key={id}
-                                name={name}
-                                image={image}
-                                type_diets={type_diets} 
-                            /> 
-                        )   
-                    )
-                } */}
+            <Pagination recipes={props.getRecipe}/> 
             </div>
         </div>
     )

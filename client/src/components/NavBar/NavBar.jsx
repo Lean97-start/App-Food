@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux'
-import Filter from '../Search/Filter';
+import Filter from '../Filters/Filter';
 import Search from '../Search/Search';
 import { getRecipe } from '../../actions';
 export  function NavBar(props){
