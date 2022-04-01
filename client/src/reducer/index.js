@@ -15,6 +15,7 @@ const rootReducer = (state = initialValues, {type, payload}) => {
         case GET_RECIPES: 
             //Valido si lo que me viene es un ID y le paso solo la receta que pedí
             //Si fuese que pase por query, me trae lo que pedi, y si no le pido por query me traería todo 
+            console.log(payload.recipes)
             return (payload.type_passed === 'id')?  
             {...state, recipe: payload.recipes}:
             {...state, recipes: payload.recipes}

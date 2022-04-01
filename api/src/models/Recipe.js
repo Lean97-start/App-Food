@@ -40,14 +40,14 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     dishTypes: {
-      type: DataTypes.INTEGER, //Tipo de plato de la receta
+      type: DataTypes.STRING, //Tipo de plato de la receta
       allowNull: true
     },
     // ingredients:{
     //   type: DataTypes.TEXT,
     //   allowNull: true  
     // },
-    inBD: { //Verifico si está en la BD la receta.
+    recipeUser: { //Verifico si está en la BD la receta.
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: false

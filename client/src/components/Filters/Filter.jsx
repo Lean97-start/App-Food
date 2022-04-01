@@ -22,7 +22,7 @@ export function Filter(props){
             <select>
                 {!props.getTypesDiets? null : props.getTypesDiets.map(type => {
                     return(
-                        <option value={type.id}>{type.name}</option>
+                        <option key={type.id} value={type.id}>{type.name}</option>
                     )
                 })}
             </select>

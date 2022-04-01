@@ -1,25 +1,55 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import { getRecipe } from '../../actions';
 import RecipeCard from '../Recipes/RecipeCard.jsx';
 import Pagination from '../Pagination/Pagination.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 
 export function Recipes(props){
-    useEffect(()=>{props.getRecipe()},[])
+    useEffect(()=>{props.getRecipe()},[]);
+
+    const [pageCurrent, setPageCurrent] = useState(1); //Lo voy a usar para que inicialmente inicie en 1 y le pueda cambiar el estado
+    const [cantRecipePage, setCantRecipePage] = useState(9); //Este state se va a encargar de la cantidad de recetas a renderizar
+    const lastRecipePage = cantRecipePage * pageCurrent;   //Multiplico la cantidad recetas a renderizar por la pagina en la que estoy. Esta multiplicacion me va a dar el ultimo valor que renderizaria. 
+    const initialRecipe = lastRecipePage - cantRecipePage; //Al restarle, si le cambio el valor de cantidad de elementos a renderizar me seguira dando el numero de la card inicial. 
+    let cantPages = (props.recipes)? Math.round((props.recipes.length)/cantRecipePage) : undefined;
+    let renderizarRecipes = (props.recipes)? props.recipes.slice(initialRecipe, lastRecipePage) : [];
+
+    function changePage(numberPage){ //Setteo la pagina a la cual quiero dirigirme
+        setPageCurrent(numberPage);
+    }
+
+    function changeRenderRecipe(numberRender){ //Modifico la cantidad de cards a renderizar.
+        setCantRecipePage(numberRender);
+    }
     
-    
-   
+    for (let index = 0; index < renderizarRecipes.length; index++) {
+        console.log(renderizarRecipes[index])
+        
+    }
+
     return(
         <div className='homeRecipes'>
-            <h1>Recipes</h1>
-            <div className='cardsHome'>
-            <Pagination recipes={props.getRecipe}/> 
+            <NavBar/>
+            <Pagination cantPages={cantPages} changePage={changePage}/> 
+            <h1>Recetas</h1>
+            <div className='cardsHome'>{!renderizarRecipes? null: renderizarRecipes.map(({id,name,image,type_diets}) => (
+                            // Renderizo cada una de las recetas
+                            
+                            <RecipeCard 
+                                key={id}
+                                name={name}
+                                image={image}
+                                type_diets={type_diets} 
+                            /> 
+                        )   
+                    )
+                }   
             </div>
         </div>
     )
-
-
 }
+
 export const mapStateToProps = (state) => {
     return {recipes: state.recipes.data}
 }

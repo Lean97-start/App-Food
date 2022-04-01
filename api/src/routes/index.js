@@ -5,6 +5,7 @@ const axios = require('axios');
 // Ejemplo: const authRouter = require('./auth.js');
     
 const router = Router();
+const api = '9c91fa8f2b9a4603acb764369a116cb4';
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -20,19 +21,21 @@ router.get('/recipes', async (req, res) => { //FUNCIONA
     const name = req.query.name; //Obtengo el nombre de la receta que me viene por query.
     try{
         const searchname_BD = await Recipe.findAll({include:[{model: Type_diet}]}); //Search a la base de datos de todas las recetas
-        const searchname_API = await axios('https://api.spoonacular.com/recipes/complexSearch?apiKey=43776671d5c54a22a99c73b95949befb&addRecipeInformation=true&number=100');
+        
+        
+        const searchname_API = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api}&addRecipeInformation=true&number=100`);
         const infoAPI = await searchname_API.data.results.map(recipe => {
             addType(recipe.diets)
             return {
                 id: recipe.id,
                 name: recipe.title,
                 summary: recipe.summary,
-                readyInMinutes: recipe.readyInMinutes,
                 score: recipe.weightWatcherSmartPoints,
                 healthScore: recipe.healthScore,
-                dishTypes: recipe.dishTypes,
                 step_by_step: recipe.instructions,
                 image: recipe.image,
+                readyInMinutes: recipe.readyInMinutes,
+                dishTypes: recipe.dishTypes,
                 // ingredients: recipe.extendedIngredients.map(ingredient => ingredient.original),
                 type_diets: recipe.diets
             }
@@ -52,18 +55,18 @@ router.get("/recipes/:id", async (req, res) => { //FUNCIONA
     let valor;
     if (regexAPI.test(id_rec)) {
         try{
-            valor = await axios(`https://api.spoonacular.com/recipes/${id_rec}/information?apiKey=43776671d5c54a22a99c73b95949befb`);
+            valor = await axios(`https://api.spoonacular.com/recipes/${id_rec}/information?apiKey=${api}`);
             let rec = valor.data;
             return res.status(200).json({
                 id: rec.id,
                 name: rec.title,
                 summary: rec.summary,
-                readyInMinutes: rec.readyInMinutes,
                 score: rec.weightWatcherSmartPoints,
                 healthScore: rec.healthScore,
-                dishTypes: rec.dishTypes,
                 step_by_step: rec.instructions,
                 image: rec.image,
+                readyInMinutes: rec.readyInMinutes,
+                dishTypes: rec.dishTypes,
                 type_diets: rec.diets,
             });
         }catch(e){return error_response()}
@@ -102,13 +105,17 @@ router.get('/types', (req, res) =>{ //FUNCIONA
 })
 
 router.post('/recipe', async (req, res) =>{ //FUNCIONA
-    const {name, summary, score, healthScore, step_by_step, image, readyInMinutes, id_type_diet} = req.body; 
+    let {name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes, type_diets} = req.body; 
+    console.log(dishTypes)
     if(!name) return res.status(400).json({msg: "No ingreso ningun nombre para la receta"});
     if(!summary) return res.status(400).json({msg: "No ingreso ningun resumen para la receta"});
-    if(!id_type_diet) return res.status(400).json({msg: "No selecciono ningun tipo de dieta para la receta"});
+    if(!type_diets) return res.status(400).json({msg: "No selecciono ningun tipo de dieta para la receta"});
+    let dishJoin = dishTypes;
+    (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes = dishJoin.join('-');
+    console.log(dishTypes)
     try{
-        const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes});
-        await recipe_created.setType_diets(id_type_diet) //Me va a vincular el o los id/s  del tipo de dieta a la receta.
+        const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
+        await recipe_created.setType_diets(type_diets) //Me va a vincular el o los id/s  del tipo de dieta a la receta.
     }catch(e){
         return res.status(500).json({msg: "Ha ocurrido un error en la creación de la receta, inténtelo de nuevo"})
     }
