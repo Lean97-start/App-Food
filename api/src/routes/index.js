@@ -17,30 +17,56 @@ async function addType(array){
     await Promise.all(array.map(type => {Type_diet.findOrCreate({where: {name: type}})}))
 }
 
+function formatSettings(dataRecipe, fount){ //Funcion para darle formato tanto a lo que me viene de la BD como de la API
+
+    if(fount === 'BD'){
+        return {
+            id: dataRecipe.id,
+            name: dataRecipe.name,
+            summary: dataRecipe.summary,
+            score: dataRecipe.score,
+            healthScore: dataRecipe.healthScore,
+            step_by_step: dataRecipe.step_by_step,
+            image: dataRecipe.image,
+            readyInMinutes: dataRecipe.readyInMinutes,
+            dishTypes: dataRecipe.dishTypes.split("-"),
+            // ingredients: dateRecipe.extendedIngredients.map(ingredient => ingredient.original),
+            type_diets: dataRecipe.type_diets.map(type_diet_name => type_diet_name.dataValues.name)
+        }
+    }else if(fount === 'API'){
+        return {
+            id: dataRecipe.id,
+            name: dataRecipe.title,
+            summary: dataRecipe.summary,
+            score: dataRecipe.weightWatcherSmartPoints,
+            healthScore: dataRecipe.healthScore,
+            step_by_step: dataRecipe.instructions,
+            image: dataRecipe.image,
+            readyInMinutes: dataRecipe.readyInMinutes,
+            dishTypes: dataRecipe.dishTypes,
+            // ingredients: dateRecipe.extendedIngredients.map(ingredient => ingredient.original),
+            type_diets: dataRecipe.diets
+        }
+    }   
+}
+
 router.get('/recipes', async (req, res) => { //FUNCIONA
     const name = req.query.name; //Obtengo el nombre de la receta que me viene por query.
     try{
+        //Búsqueda en la BD
         const searchname_BD = await Recipe.findAll({include:[{model: Type_diet}]}); //Search a la base de datos de todas las recetas
-        
-        
+        const infoBD = await searchname_BD.map(recipeBD => {
+            return formatSettings(recipeBD.dataValues, 'BD');
+        })
+        //Búsqueda en la API
         const searchname_API = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api}&addRecipeInformation=true&number=100`);
         const infoAPI = await searchname_API.data.results.map(recipe => {
             addType(recipe.diets)
-            return {
-                id: recipe.id,
-                name: recipe.title,
-                summary: recipe.summary,
-                score: recipe.weightWatcherSmartPoints,
-                healthScore: recipe.healthScore,
-                step_by_step: recipe.instructions,
-                image: recipe.image,
-                readyInMinutes: recipe.readyInMinutes,
-                dishTypes: recipe.dishTypes,
-                // ingredients: recipe.extendedIngredients.map(ingredient => ingredient.original),
-                type_diets: recipe.diets
-            }
+            return formatSettings(recipe, 'API');
         });
-        const recipes = infoAPI.concat(searchname_BD);
+
+        //Realizo la el Json para mandar al front
+        const recipes = infoAPI.concat(infoBD);
         if(!name) return res.status(200).json(recipes); //Si no me viene ningun nombre por query, que devuelva todas las recetas.
         const filterRecipe = recipes.filter(recipe => recipe.name.toUpperCase().includes(name.toUpperCase())); //Uppercase porque sino puede que no encuentre coincidencias.
         (filterRecipe.length > 0)? res.status(200).json(filterRecipe) : res.status(404).json({msg: "No se ha encontrado ninguna receta con ese nombre."});
@@ -53,29 +79,18 @@ router.get("/recipes/:id", async (req, res) => { //FUNCIONA
     const regexBD = /[a-zA-Z0-9-]+$/  
     const error_response = () => res.status(404).json({ msg: "No se ha encontrado el ID de la receta" }) //Para no repetir la misma linea, la guardo en una constante como funcion asi la puedo invocar.
     let valor;
-    if (regexAPI.test(id_rec)) {
+   
+    if (regexAPI.test(id_rec)) {//Valida si lo que viene es un número que es el id que maneja la API
         try{
             valor = await axios(`https://api.spoonacular.com/recipes/${id_rec}/information?apiKey=${api}`);
-            let rec = valor.data;
-            return res.status(200).json({
-                id: rec.id,
-                name: rec.title,
-                summary: rec.summary,
-                score: rec.weightWatcherSmartPoints,
-                healthScore: rec.healthScore,
-                step_by_step: rec.instructions,
-                image: rec.image,
-                readyInMinutes: rec.readyInMinutes,
-                dishTypes: rec.dishTypes,
-                type_diets: rec.diets,
-            });
+            return res.status(200).json(formatSettings(valor.data, 'API'));
         }catch(e){return error_response()}
-    } else if(regexBD.test(id_rec)){
+    
+    } else if(regexBD.test(id_rec)){//Valida si lo que viene es alfanumérico que es el id que maneja la BD
         try{
-            valor = await Recipe.findByPk(id_rec, {include: {model: Type_diet, attributes: ['name'], through: {attributes: []}}});
-            //through me garantiza que solo me va a traer esos atributos que le pongo en attributes.
+            valor = await Recipe.findByPk(id_rec, {include: {model: Type_diet}});
             if(!valor) return error_response()
-            return res.send(valor);
+            return res.status(200).json(formatSettings(valor.dataValues, 'BD'));
         }catch(e){console.log(e)}
     }else{
         return error_response()
@@ -106,13 +121,11 @@ router.get('/types', (req, res) =>{ //FUNCIONA
 
 router.post('/recipe', async (req, res) =>{ //FUNCIONA
     let {name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes, type_diets} = req.body; 
-    console.log(dishTypes)
     if(!name) return res.status(400).json({msg: "No ingreso ningun nombre para la receta"});
     if(!summary) return res.status(400).json({msg: "No ingreso ningun resumen para la receta"});
     if(!type_diets) return res.status(400).json({msg: "No selecciono ningun tipo de dieta para la receta"});
     let dishJoin = dishTypes;
     (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes = dishJoin.join('-');
-    console.log(dishTypes)
     try{
         const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
         await recipe_created.setType_diets(type_diets) //Me va a vincular el o los id/s  del tipo de dieta a la receta.

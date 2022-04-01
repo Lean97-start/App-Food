@@ -23,10 +23,10 @@ export function Recipes(props){
         setCantRecipePage(numberRender);
     }
     
-    for (let index = 0; index < renderizarRecipes.length; index++) {
-        console.log(renderizarRecipes[index])
+    // for (let index = 0; index < renderizarRecipes.length; index++) {
+    //     console.log(renderizarRecipes[index])
         
-    }
+    // }
 
     return(
         <div className='homeRecipes'>
