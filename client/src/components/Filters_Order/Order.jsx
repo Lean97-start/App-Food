@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getTypesRecipes } from '../../actions';
 
 
 
 export function Filter(props){
-    useEffect(() => props.types_diets(),[])
+
+    function handlerChangeOrder(){
+
+    }
+    function handlerChangeAlfabetic(){
+        
+    }
+
+
     return(
         <div className='allFilters'>
             <select>
@@ -15,16 +23,6 @@ export function Filter(props){
             <select>
                 <option value='A-Z'>A-Z</option>
                 <option value='Z-A'>Z-A</option>
-            </select>
-            <select>
-                <option value='A-Z'>Puntuacion</option>
-            </select>
-            <select>
-                {!props.getTypesDiets? null : props.getTypesDiets.map(type => {
-                    return(
-                        <option key={type.id} value={type.id}>{type.name}</option>
-                    )
-                })}
             </select>
         </div>
     )

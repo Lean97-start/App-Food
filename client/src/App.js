@@ -9,14 +9,14 @@ import React from 'react';
 
 function App() {
   return (
-    <React.Fragment>
+    // <React.Fragment>
       <div className='App'>
         <Route exact path={'/'} render={() => <LandingPage/>}/>
-        <Route path={'/recipes/:id'} render={(match) => <RecipeDetail match={match}/>}/>
-        <Route path={'/recipes'} render={(match) => <Recipes match={match}/>}/>
+        <Route path={'/recipes/:id'} render={(props) => <RecipeDetail match={props.match}/>}/>
+        <Route exact path={'/recipes'} render={(match) => <Recipes match={match}/>}/>
         <Route path={'/createRecipe'} render={() => <CreateRecipe/>}/>
       </div>
-    </React.Fragment>
+    // </React.Fragment>
   );
 }
 

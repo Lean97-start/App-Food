@@ -5,7 +5,7 @@ const axios = require('axios');
 // Ejemplo: const authRouter = require('./auth.js');
     
 const router = Router();
-const api = '9c91fa8f2b9a4603acb764369a116cb4';
+const api = 'ce9bab272d16434081f8f4a732b74c4f';
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -98,7 +98,7 @@ router.get("/recipes/:id", async (req, res) => { //FUNCIONA
 });
 
 router.get('/types', (req, res) =>{ //FUNCIONA
-    const types_diet = ["omnivore", "pescetarian", "vegetarian", "vegan", "fruitarian", "paleo"];
+    const types_diet = ["omnivore", "pescatarian", "vegetarian", "vegan", "fruitarian", "paleolithic"];
 
     //Ejecuto esta función la cual me va a ejecutar por promesas la búsqueda a la BD, sino está el tipo de dieta, lo crea.
     addType(types_diet)

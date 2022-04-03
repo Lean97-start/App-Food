@@ -1,7 +1,10 @@
 import axios from 'axios'
 const local = 'http://localhost:3001/';
 export const GET_RECIPES = 'GET_RECIPES',
- GET_TYPES_DIETS = 'GET_TYPES_DIETS';
+ GET_TYPES_DIETS = 'GET_TYPES_DIETS',
+ FILTER_TYPES_DIETS = "FILTER_TYPES_DIETS",
+ FILTER_SCORE = "FILTER_SCORE",
+ ORDER_RECIPES = "ORDER_RECIPES";
 
 export function getTypesRecipes(){
     return function(dispatch){ //Con esta function creator, me traigo todos los tipos de recetas.
@@ -27,7 +30,13 @@ export function getRecipe(payload){
             .then(recipes => dispatch({type: GET_RECIPES, payload: {recipes: recipes, type_passed: payload.type_passed}}))
             .catch(e => console.log(e))}
     }
+}
 
+export function filterTypesDiets(payload){
+    return {type: FILTER_TYPES_DIETS, payload: payload}
+}
+export function filterScore(payload){
+    return {type: FILTER_SCORE, payload}
 }
 
 export function postRecipe(){

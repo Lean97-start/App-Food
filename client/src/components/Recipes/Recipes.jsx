@@ -23,24 +23,20 @@ export function Recipes(props){
         setCantRecipePage(numberRender);
     }
     
-    // for (let index = 0; index < renderizarRecipes.length; index++) {
-    //     console.log(renderizarRecipes[index])
-        
-    // }
 
     return(
         <div className='homeRecipes'>
             <NavBar/>
             <Pagination cantPages={cantPages} changePage={changePage}/> 
             <h1>Recetas</h1>
-            <div className='cardsHome'>{!renderizarRecipes? null: renderizarRecipes.map(({id,name,image,type_diets}) => (
+            <div className='cardsHome'>{!renderizarRecipes? <h3>"¡No hay recetas para mostrar, disculpe!"</h3> : renderizarRecipes.map(({id,name,image,type_diets}) => (
                             // Renderizo cada una de las recetas
-                            
                             <RecipeCard 
-                                key={id}
-                                name={name}
-                                image={image}
-                                type_diets={type_diets} 
+                                key = {id}
+                                id = {id}
+                                name = {name}
+                                image = {image}
+                                type_diets = {type_diets} 
                             /> 
                         )   
                     )
@@ -51,7 +47,7 @@ export function Recipes(props){
 }
 
 export const mapStateToProps = (state) => {
-    return {recipes: state.recipes.data}
+    return {recipes: state.recipes}
 }
 export const mapDispatchToProps = (dispatch) => {
     return {getRecipe: (obj_getRecipe) => dispatch(getRecipe(obj_getRecipe))}
