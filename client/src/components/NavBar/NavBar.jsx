@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Filter from '../Filters_Order/Filter';
 import Search from '../Search/Search';
+import Order from '../Filters_Order/Order';
 import { getRecipe } from '../../actions';
-export  function NavBar(props){
+
+
+export function NavBar(props){
 
     function handlerOnclick(e){
         props.getRecipe();
@@ -19,7 +22,8 @@ export  function NavBar(props){
                 <NavLink to='/createRecipe'><button><h3>Crear Receta</h3></button></NavLink>
             </div>
             <Search/>
-            <Filter/>
+            <Order setPageCurrent={props.setPageCurrent} setStateOrder={props.setStateOrder}/>
+            <Filter setPageCurrent={props.setPageCurrent}/>
         </nav>
     )
 }

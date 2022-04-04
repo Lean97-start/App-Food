@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_TYPES_DIETS , FILTER_TYPES_DIETS, FILTER_SCORE, CREATE_RECIPE, FILTER_CREATED} from "../actions";
+import { GET_RECIPES, GET_TYPES_DIETS , FILTER_TYPES_DIETS, FILTER_SCORE, CREATE_RECIPE, FILTER_CREATED, ORDER_SCORE, ORDER_ALPHABETICAL} from "../actions";
 
 const initialValues = {
     recipes: [],
@@ -48,7 +48,46 @@ const rootReducer = (state = initialValues, {type, payload}) => {
             else if(payload === 'medio'){return {...state, recipes: AllRecipes.filter(recipe => (recipe.score <= 20 && recipe.score >= 10))}}
             else if(payload === 'alto'){return {...state, recipes: AllRecipes.filter(recipe =>  recipe.score >= 30)}}
             else{return {...state, recipes: AllRecipes}}
+        
+        case ORDER_SCORE:
             
+            let arrayOrderScore = [];
+            if(payload === 'asc'){
+                arrayOrderScore = state.recipes.sort((a,b) => {
+                    if(a.score > b.score) return 1
+                    else if(a.score < b.score) return -1
+                    else return 0
+                })
+            }else if(payload === 'des'){
+                arrayOrderScore = state.recipes.sort((a,b) => {
+                    if(a.score > b.score) return -1
+                    else if(a.score < b.score) return 1
+                    else return 0
+                })
+            }else{
+                arrayOrderScore = AllRecipes
+            }
+            return {...state, recipes: arrayOrderScore}
+
+        case ORDER_ALPHABETICAL:
+            let arrayOrderAlphabetical = [];
+            if(payload === 'A-Z'){
+                arrayOrderAlphabetical = state.recipes.sort((a,b) => {
+                    if(a.name > b.name) return 1
+                    else if(a.name < b.name) return -1
+                    else return 0
+                })
+            }else if(payload === 'Z-A'){
+                arrayOrderAlphabetical = state.recipes.sort((a,b) => {
+                    if(a.name > b.name) return -1
+                    else if(a.name < b.name) return 1
+                    else return 0
+                })
+            }else{
+                arrayOrderAlphabetical = AllRecipes
+            }
+            return {...state, recipes: arrayOrderAlphabetical}
+
         default: 
             return state;
     }

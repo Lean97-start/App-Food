@@ -6,7 +6,9 @@ export const GET_RECIPES = 'GET_RECIPES',
  FILTER_SCORE = "FILTER_SCORE",
  ORDER_RECIPES = "ORDER_RECIPES",
  CREATE_RECIPE = "CREATE_RECIPE",
- FILTER_CREATED = "FILTER_CREATED";
+ FILTER_CREATED = "FILTER_CREATED",
+ ORDER_SCORE = "ORDER_SCORE",
+ ORDER_ALPHABETICAL = "ORDER_ALPHABETICAL";
 
 export function getTypesRecipes(){
     return function(dispatch){ //Con esta function creator, me traigo todos los tipos de recetas.
@@ -42,6 +44,13 @@ export function filterScore(payload){
 }
 export function filterCreated(payload){
     return {type: FILTER_CREATED, payload}
+}
+
+export function changeOrder(payload){
+    return {type: ORDER_SCORE, payload}
+}
+export function changeAlphabetical(payload){
+    return {type: ORDER_ALPHABETICAL, payload}
 }
 
 export function postRecipe(payload){

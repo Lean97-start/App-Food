@@ -5,7 +5,7 @@ const axios = require('axios');
 // Ejemplo: const authRouter = require('./auth.js');
     
 const router = Router();
-const api = 'ce9bab272d16434081f8f4a732b74c4f';
+const api = 'bcc16ececf664674b822aa98da8ae9cc';
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);

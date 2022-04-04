@@ -7,7 +7,7 @@ import NavBar from '../NavBar/NavBar.jsx';
 
 export function Recipes(props){
     useEffect(()=>{props.getRecipe()},[]);
-
+    const [stateOrder, setStateOrder] = useState()
     const [pageCurrent, setPageCurrent] = useState(1); //Lo voy a usar para que inicialmente inicie en 1 y le pueda cambiar el estado
     const [cantRecipePage, setCantRecipePage] = useState(9); //Este state se va a encargar de la cantidad de recetas a renderizar
     const lastRecipePage = cantRecipePage * pageCurrent;   //Multiplico la cantidad recetas a renderizar por la pagina en la que estoy. Esta multiplicacion me va a dar el ultimo valor que renderizaria. 
@@ -26,7 +26,7 @@ export function Recipes(props){
 
     return(
         <div className='homeRecipes'>
-            <NavBar/>
+            <NavBar setPageCurrent={setPageCurrent} setStateOrder={setStateOrder}/>
             <Pagination cantPages={cantPages} changePage={changePage}/> 
             <h1>Recetas</h1>
             <div className='cardsHome'>{!renderizarRecipes? <h3>"¡No hay recetas para mostrar, disculpe!"</h3> : renderizarRecipes.map(({id,name,image,type_diets}) => (

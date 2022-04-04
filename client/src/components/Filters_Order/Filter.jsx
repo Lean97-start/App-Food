@@ -10,15 +10,17 @@ export function Filter(props){
 
     function handlerTypesDiets(e){ //Este handler va a tomar el cambio de una opción.
         props.filterTypesDiets(e.target.value)
+        props.setPageCurrent(1)
     }
     function handlerScore(e){
         props.filterScore(e.target.value)
+        props.setPageCurrent(1)
     }
     function handlerCreated(e){
         props.filterCreated(e.target.value)
+        props.setPageCurrent(1)
     }
 
-    // console.log("Filter: "+ props.rec)
     return(
         <div className='allFilters'>
             {/* Selección de score */}
