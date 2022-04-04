@@ -5,7 +5,7 @@ const axios = require('axios');
 // Ejemplo: const authRouter = require('./auth.js');
     
 const router = Router();
-const api = 'bcc16ececf664674b822aa98da8ae9cc';
+const api = '1323a609c8b8420aba666bd2d26f2fb8';
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -120,13 +120,23 @@ router.get('/types', (req, res) =>{ //FUNCIONA
 
 })
 
+
+
 router.post('/recipe', async (req, res) =>{ //FUNCIONA
+    function startCapitalLetter(word){ //Para poner la primer letra del nombre en mayuscula
+        inicio = word.slice(0,1)
+        resto = word.slice(1)
+        inicio = inicio.toUpperCase();
+        return  inicio.concat(resto);
+    }
     let {name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes, type_diets} = req.body; 
     if(!name) return res.status(400).json({msg: "No ingreso ningun nombre para la receta"});
     if(!summary) return res.status(400).json({msg: "No ingreso ningun resumen para la receta"});
     if(!type_diets) return res.status(400).json({msg: "No selecciono ningun tipo de dieta para la receta"});
     let dishJoin = dishTypes;
     (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes = dishJoin.join('-');
+    name = startCapitalLetter(name)
+    summary = startCapitalLetter(summary)
     try{
         const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
         await recipe_created.setType_diets(type_diets) //Me va a vincular el o los id/s  del tipo de dieta a la receta.

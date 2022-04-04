@@ -55,8 +55,10 @@ export function changeAlphabetical(payload){
 
 export function postRecipe(payload){
     //Recibe los datos que vienen del formulario y lo paso por medio del payload al backend.
-    return function(dispatch){
+    
+    return (dispatch) => {
         return axios.post(`${local}recipe`, payload)
-        .then(() => dispatch({type: CREATE_RECIPE, payload:{msg: "Receta creada con éxito", result: true}}), () => dispatch({type: CREATE_RECIPE, payload: {msg: "Ocurrío un error en la creación de la receta, intente de nuevo", result: false}}))
+        .then(() => alert( "Receta creada con éxito"), () => alert("Ocurrío un error en la creación de la receta, intente de nuevo"))
+        // .then((response) => dispatch({type: CREATE_RECIPE, payload:{response: response.data, result: true}}), (response) => dispatch({type: CREATE_RECIPE, payload: {response: response.data , result: false}}))       
     }
 }

@@ -19,14 +19,14 @@ const rootReducer = (state = initialValues, {type, payload}) => {
         case GET_RECIPES: 
             //Valido si lo que me viene es un ID y le paso solo la receta que pedí
             //Si fuese que pase por query, me trae lo que pedi, y si no le pido por query me traería todo
-            AllRecipes = payload.recipes.data;
+            if(!AllRecipes.length) AllRecipes = payload.recipes.data;
             return (payload.type_passed === 'id')?  
             {...state, recipe: payload.recipes}:
             {...state, recipes: payload.recipes.data}
 
         case CREATE_RECIPE:
-            console.log(payload)
-            return {...state, statePost: {msg: payload.msg, result: payload.result}};  
+            // return {...state, statePost: {msg: payload.response.msg, result: payload.result}};  
+            return state;
 
         case FILTER_TYPES_DIETS:
             //Si me viene cualquier tipo de dieta, me la va a filtrar las distintas recetas que tengan esa dieta, caso contrario, muestra todo. 

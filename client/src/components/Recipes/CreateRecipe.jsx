@@ -44,11 +44,10 @@ export function CreateRecipe(props){
             setErrorState({...stateError, errorSubmit: "Campos con errores"});
         }else{
             stateError.errorSubmit && alert(stateError.errorSubmit);
-            postRecipe(state)
-            console.log(props.statePost)
+            props.postRecipe(state)
             setState({ name:"", summary: "", score:0, healthScore: 0, step_by_step:"", image:"", readyInMinutes: 0, dishTypes: null, type_diets: [],})
-            // alert(msg)
         }
+        
     }
     return(
         <div>
