@@ -31,7 +31,8 @@ function formatSettings(dataRecipe, fount){ //Funcion para darle formato tanto a
             readyInMinutes: dataRecipe.readyInMinutes,
             dishTypes: dataRecipe.dishTypes.split("-"),
             // ingredients: dateRecipe.extendedIngredients.map(ingredient => ingredient.original),
-            type_diets: dataRecipe.type_diets.map(type_diet_name => type_diet_name.dataValues.name)
+            type_diets: dataRecipe.type_diets.map(type_diet_name => type_diet_name.dataValues.name),
+            recipeUser: dataRecipe.recipeUser
         }
     }else if(fount === 'API'){
         return {

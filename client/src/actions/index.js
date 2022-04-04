@@ -4,7 +4,9 @@ export const GET_RECIPES = 'GET_RECIPES',
  GET_TYPES_DIETS = 'GET_TYPES_DIETS',
  FILTER_TYPES_DIETS = "FILTER_TYPES_DIETS",
  FILTER_SCORE = "FILTER_SCORE",
- ORDER_RECIPES = "ORDER_RECIPES";
+ ORDER_RECIPES = "ORDER_RECIPES",
+ CREATE_RECIPE = "CREATE_RECIPE",
+ FILTER_CREATED = "FILTER_CREATED";
 
 export function getTypesRecipes(){
     return function(dispatch){ //Con esta function creator, me traigo todos los tipos de recetas.
@@ -38,7 +40,14 @@ export function filterTypesDiets(payload){
 export function filterScore(payload){
     return {type: FILTER_SCORE, payload}
 }
+export function filterCreated(payload){
+    return {type: FILTER_CREATED, payload}
+}
 
-export function postRecipe(){
-
+export function postRecipe(payload){
+    //Recibe los datos que vienen del formulario y lo paso por medio del payload al backend.
+    return function(dispatch){
+        return axios.post(`${local}recipe`, payload)
+        .then(() => dispatch({type: CREATE_RECIPE, payload:{msg: "Receta creada con éxito", result: true}}), () => dispatch({type: CREATE_RECIPE, payload: {msg: "Ocurrío un error en la creación de la receta, intente de nuevo", result: false}}))
+    }
 }

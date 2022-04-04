@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function RecipeCard({key, id,name, image, type_diets}) {
+export default function RecipeCard({id,name, image, type_diets}) {
     return (
         <div className="cardHouse">
             <Link to={`/recipes/${id}`}>
@@ -10,7 +10,7 @@ export default function RecipeCard({key, id,name, image, type_diets}) {
                 <br />
             </Link>
             {type_diets.map((diet) => (
-                <li key={key} id={diet}>{diet}</li>
+                <li key={diet} id={diet}>{diet}</li>
             ))}
             
         </div>

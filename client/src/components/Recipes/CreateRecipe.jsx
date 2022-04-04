@@ -1,7 +1,7 @@
 import React, {useEffect, useState}from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { getTypesRecipes } from '../../actions';
+import { getTypesRecipes , postRecipe} from '../../actions';
 
 export function CreateRecipe(props){
 
@@ -34,6 +34,7 @@ export function CreateRecipe(props){
         } 
         setState({...state, type_diets: array_types})
     }
+   
     
     function handlerSubmit(e){
         e.preventDefault();
@@ -41,9 +42,13 @@ export function CreateRecipe(props){
         if(!state.type_diets.length){setErrorState({...stateError, check: "Debe seleccionar al menos un tipo de dieta"})}
         if(stateError.name || stateError.summary || stateError.score || stateError.healthScore || stateError.readyInMinutes || stateError.check){
             setErrorState({...stateError, errorSubmit: "Campos con errores"});
+        }else{
+            stateError.errorSubmit && alert(stateError.errorSubmit);
+            postRecipe(state)
+            console.log(props.statePost)
+            setState({ name:"", summary: "", score:0, healthScore: 0, step_by_step:"", image:"", readyInMinutes: 0, dishTypes: null, type_diets: [],})
+            // alert(msg)
         }
-        stateError.errorSubmit && alert(stateError.errorSubmit);
-
     }
     return(
         <div>
@@ -56,31 +61,31 @@ export function CreateRecipe(props){
                 <div>
                     {stateError.name && <p className='danger'>{stateError.name}</p>}
                     <label htmlFor="inputName">Nombre: </label>
-                    <input id='inputName' name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
+                    <input value={state.name} id='inputName' name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
                 </div>
                 <div>
                     {stateError.summary && <p className='danger'>{stateError.summary}</p>}
                     <label htmlFor="inputSummary">Resumen del plato: </label>
-                    <input id='inputSummary' name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
+                    <input value={state.summary} id='inputSummary' name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
                 </div>
                 <div>
                     {stateError.readyInMinutes && <p className='danger'>{stateError.readyInMinutes}</p>}
                     <label htmlFor="inputreadyInMinutes">Tiempo de cocción: </label>
-                    <input id='inputreadyInMinutes' name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
+                    <input value={state.readyInMinutes} id='inputreadyInMinutes' name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
                 </div>
                 <div>
                     {stateError.score && <p className='danger'>{stateError.score}</p>}
                     <label htmlFor="inputPuntuacion">Puntuación: </label>
-                    <input id='inputPuntuacion' name='score' type="text" onChange={handlerChange}/>
+                    <input value={state.score} id='inputPuntuacion' name='score' type="text" onChange={handlerChange}/>
                 </div>
                 <div>
                     <label htmlFor="inputImg">Imagen url: </label>
-                    <input id='inputImg' name='image' type="text" onChange={handlerChange}/>
+                    <input value={state.image} id='inputImg' name='image' type="text" onChange={handlerChange}/>
                 </div>
                 <div>
                     {stateError.healthScore && <p className='danger'>{stateError.healthScore}</p>}
                     <label htmlFor="inputComidaSaludable">Nivel de "comida saludable": </label>
-                    <input id='inputComidaSaludable' name='healthScore' type="text" onChange={handlerChange}/>
+                    <input value={state.healthScore} id='inputComidaSaludable' name='healthScore' type="text" onChange={handlerChange}/>
                 </div>
                 <div>
                     {stateError.check && <p className='danger'>{stateError.check}</p>}
@@ -93,7 +98,7 @@ export function CreateRecipe(props){
                 </div>
                 <div>
                     <label htmlFor="inputPasos">Paso a paso (Instrucciones): </label>
-                    <textarea id='inputPasos' name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
+                    <textarea value={state.step_by_step} id='inputPasos' name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
                 </div>
                 <button type='submit'>Enviar</button>
             </form>
@@ -132,10 +137,16 @@ export function validateForm(data){
 [ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
 [ ] Botón/Opción para crear una nueva receta */
 export function mapStateToProps(state){
-    return {getTypesDiets: state.types_diets}
+    return {
+        getTypesDiets: state.types_diets,
+        statePost: state.statePost
+    }
 }
 export function mapDispatchToProps(dispatch){
-    return {getTypesRecipes: () => dispatch(getTypesRecipes())}
+    return {
+        getTypesRecipes: () => dispatch(getTypesRecipes()),
+        postRecipe: (datas) => dispatch(postRecipe(datas))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRecipe);

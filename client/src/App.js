@@ -13,7 +13,7 @@ function App() {
       <div className='App'>
         <Route exact path={'/'} render={() => <LandingPage/>}/>
         <Route path={'/recipes/:id'} render={(props) => <RecipeDetail match={props.match}/>}/>
-        <Route exact path={'/recipes'} render={(match) => <Recipes match={match}/>}/>
+        <Route exact path={'/recipes'} render={() => <Recipes/>}/>
         <Route path={'/createRecipe'} render={() => <CreateRecipe/>}/>
       </div>
     // </React.Fragment>

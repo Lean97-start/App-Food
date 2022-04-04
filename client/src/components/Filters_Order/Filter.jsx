@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getTypesRecipes, filterTypesDiets, filterScore} from '../../actions';
+import { getTypesRecipes, filterTypesDiets, filterScore, filterCreated} from '../../actions';
 
 
 
 export function Filter(props){
     // useEffect(() => props.types_diets(),[props.filterTypesDiets, props.filterScore]); //Ver esto
-    useEffect(() => props.types_diets(),[]); //Ver esto
+    useEffect(() => props.types_diets(),[props.filterTypesDiets, props.filterScore, props.filterCreated]); //VER ESTO!!
 
     function handlerTypesDiets(e){ //Este handler va a tomar el cambio de una opción.
         props.filterTypesDiets(e.target.value)
@@ -14,6 +14,10 @@ export function Filter(props){
     function handlerScore(e){
         props.filterScore(e.target.value)
     }
+    function handlerCreated(e){
+        props.filterCreated(e.target.value)
+    }
+
     // console.log("Filter: "+ props.rec)
     return(
         <div className='allFilters'>
@@ -25,6 +29,13 @@ export function Filter(props){
                 <option value='alto'>Alto</option>
                 <option value='medio'>Medio</option>
                 <option value='bajo'>Bajo</option>
+            </select>
+
+            <p>Mostrar recetas:</p>
+            <select onChange={handlerCreated}>
+                <option value='All'>All</option>
+                <option value='API'>API</option>
+                <option value='My_recipes'>My recipes</option>
             </select>
 
             {/* Selección de Diets */}
@@ -41,13 +52,14 @@ export function Filter(props){
     )
 }
 export function mapStateToProps(state){
-    return{getTypesDiets: state.types_diets, rec: state.recipes}
+    return{getTypesDiets: state.types_diets}
 }
 export function mapDispatchToProps(dispatch){
     return{
         types_diets: () => dispatch(getTypesRecipes()),
         filterTypesDiets: (value_diet) => dispatch(filterTypesDiets(value_diet)),
-        filterScore: (value_score) => dispatch(filterScore(value_score))
+        filterScore: (value_score) => dispatch(filterScore(value_score)),
+        filterCreated: (value_created) => dispatch(filterCreated(value_created))
     }
 }
 
