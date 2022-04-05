@@ -2,7 +2,8 @@ import React, {useEffect, useState}from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getTypesRecipes , postRecipe} from '../../actions';
-
+import style from '../Recipes/CreateRecipe.module.css';
+import img from '../../assets/img_bkg_create.jpg'
 export function CreateRecipe(props){
 
     useEffect(() => {props.getTypesRecipes()},[])
@@ -51,56 +52,84 @@ export function CreateRecipe(props){
     }
     return(
         <div>
-            <nav className='navBar'>
-                <Link to={'/recipes'}><button>Volver</button></Link>
-            </nav>
-            <h1>Creación de receta</h1>
-            <form onSubmit={(e) => handlerSubmit(e)}>
-                {stateError.errorSubmit && <p className='danger'>{stateError.errorSubmit}</p>}
-                <div>
-                    {stateError.name && <p className='danger'>{stateError.name}</p>}
-                    <label htmlFor="inputName">Nombre: </label>
-                    <input value={state.name} id='inputName' name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
-                </div>
-                <div>
-                    {stateError.summary && <p className='danger'>{stateError.summary}</p>}
-                    <label htmlFor="inputSummary">Resumen del plato: </label>
-                    <input value={state.summary} id='inputSummary' name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
-                </div>
-                <div>
-                    {stateError.readyInMinutes && <p className='danger'>{stateError.readyInMinutes}</p>}
-                    <label htmlFor="inputreadyInMinutes">Tiempo de cocción: </label>
-                    <input value={state.readyInMinutes} id='inputreadyInMinutes' name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
-                </div>
-                <div>
-                    {stateError.score && <p className='danger'>{stateError.score}</p>}
-                    <label htmlFor="inputPuntuacion">Puntuación: </label>
-                    <input value={state.score} id='inputPuntuacion' name='score' type="text" onChange={handlerChange}/>
-                </div>
-                <div>
-                    <label htmlFor="inputImg">Imagen url: </label>
-                    <input value={state.image} id='inputImg' name='image' type="text" onChange={handlerChange}/>
-                </div>
-                <div>
-                    {stateError.healthScore && <p className='danger'>{stateError.healthScore}</p>}
-                    <label htmlFor="inputComidaSaludable">Nivel de "comida saludable": </label>
-                    <input value={state.healthScore} id='inputComidaSaludable' name='healthScore' type="text" onChange={handlerChange}/>
-                </div>
-                <div>
-                    {stateError.check && <p className='danger'>{stateError.check}</p>}
-                    <label>Tipos de dietas: </label>
-                    <div>
-                        {props.getTypesDiets && props.getTypesDiets.map(type_diet => (
-                            <label key={type_diet.id}><input name={type_diet.name} onChange={(e) => checked(e)} type="checkbox" value={type_diet.id}/>{type_diet.name}</label>
-                        ))}
+            <img id={style.img} src={img} alt="" />
+            <header>
+                <nav className={style.navBar}>
+                    <Link id={style.Link_button} to={'/recipes'}><button id={style.button}>Volver</button></Link>
+                </nav>
+            </header>
+            <div className={style.container}>
+                <div className={style.container_marco}>
+
+                    <h1 id={style.h1}>Creación de receta</h1>
+                    {stateError.errorSubmit && alert(stateError.errorSubmit)}
+
+                    <form className={style.form} onSubmit={(e) => handlerSubmit(e)}>
+                        <div id={style.grid_div}>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputName">Nombre: </label>
+                                <input value={state.name} id={style.input} name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
+                                {stateError.name && <p className={style.danger}>{stateError.name}</p>}
+                            </div>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputSummary">Resumen del plato: </label>
+                                <input value={state.summary} id={style.input} name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
+                                {stateError.summary && <p className={style.danger}>{stateError.summary}</p>}
+                            </div>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputreadyInMinutes">Tiempo de cocción: </label>
+                                <input value={state.readyInMinutes} id={style.input} name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
+                                {stateError.readyInMinutes && <p className={style.danger}>{stateError.readyInMinutes}</p>}
+                            </div>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputPuntuacion">Puntuación: </label>
+                                <input value={state.score} id={style.input} name='score' type="text" onChange={handlerChange}/>
+                                {stateError.score && <p className={style.danger}>{stateError.score}</p>}
+                            </div>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputImg">Imagen url: </label>
+                                <input value={state.image} id={style.input} name='image' type="text" onChange={handlerChange}/>
+                            </div>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputComidaSaludable">Nivel de "comida saludable": </label>
+                                <input value={state.healthScore} id={style.input} name='healthScore' type="text" onChange={handlerChange}/>
+                                {stateError.healthScore && <p className={style.danger}>{stateError.healthScore}</p>}
+                            </div>
+
+                        </div>
+
+                        <div id={style.grid_campos}>
+
+                            <div id={style.div_container}>
+                                <label id={style.label} htmlFor="inputPasos">Paso a paso (Instrucciones): </label>
+                                <textarea value={state.step_by_step} id={style.input} name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
+                            </div>
+
+                            <div id={style.div_container}>
+                                <label id={style.label}>Tipos de dietas: </label>
+                                {stateError.check && <p className={style.danger}>{stateError.check}</p>}
+
+                                <div className={style.diets_list}>
+                                    {props.getTypesDiets && props.getTypesDiets.map(type_diet => (
+                                        <div key={type_diet.id}><label id={style.label_check}><input name={type_diet.name} onChange={(e) => checked(e)} type="checkbox" value={type_diet.id}/>{type_diet.name}</label></div>
+                                    ))}
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <button id={style.button_submit} type='submit'>Enviar</button>
+                    </form>
+                    <div id={style.button_div}>
                     </div>
                 </div>
-                <div>
-                    <label htmlFor="inputPasos">Paso a paso (Instrucciones): </label>
-                    <textarea value={state.step_by_step} id='inputPasos' name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
-                </div>
-                <button type='submit'>Enviar</button>
-            </form>
+            </div>    
         </div>
     )
 }
@@ -149,3 +178,7 @@ export function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRecipe);
+
+
+
+

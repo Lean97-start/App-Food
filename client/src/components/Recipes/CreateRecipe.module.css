@@ -1,0 +1,134 @@
+.navBar{
+    background: linear-gradient(180deg, rgba(0,0,0,1) 29%, rgba(0,0,0,0.7336309523809523) 100%);   
+    position: relative;
+}
+.container {
+    display: flex;
+    margin-top: 40px;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+.container > .container_marco{
+    display: inline-block;
+    border: 2px solid white;
+    align-content: center;
+    padding: 25px;
+    width: 75%;
+    height: 95vh;
+    padding-top: 5px;
+    background-color: #a3601d;
+    border-radius: 15px 50px 30px
+}
+#h1{
+    color: aliceblue;
+}
+
+.form{
+    background-color: #daa672; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    border-radius: 20px;
+}
+
+#grid_div{
+    /* border: 2px solid black; */
+    padding: 10px;
+    /* margin: 10px 10px; */
+    display: grid;
+    grid-gap: 20px 20px;
+    grid-template-columns: repeat(3, 400px);
+    grid-template-rows: repeat(2, 120px);
+}
+
+#grid_campos{
+    margin-top: -20px;;
+    display: grid;
+    grid-gap: 20px 20px;
+    /* grid-template-columns: 35rem 40rem; */
+    grid-template-rows: 170px 150px;
+}
+
+#div_container{
+    display: flex;
+    flex-direction:column;
+    /* border: 2px solid black; */
+}
+
+#label{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    color: #000;
+    font-weight: bold;
+}
+
+#input{
+    margin: 10px 0;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+} 
+
+.diets_list {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding: 5px 5px;
+    margin-top: 10px ;
+    display: grid;
+    grid-gap: 10px 15px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 22px);
+}
+#label_check{
+   font-size: 20px;
+}
+
+.danger{
+    display: flex;
+    color: #d00000;
+    font-weight: bold;
+    justify-content: center;
+}
+#button_div{
+    display: flex;
+    justify-content: center;
+}
+
+#button_submit{
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+    height: 35px;
+    font-weight:  bold;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px; 
+}
+#Link_button{
+    text-decoration: none;
+    display: inline-flex;
+    margin-left: 55px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#button{
+    color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin: 0 6px;
+    height: 35px;
+    font-size: larger;
+}
+
+#img{
+    position: absolute;
+    height: 1000px;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}

@@ -1,0 +1,30 @@
+.container{
+    position: relative;
+    display: inline; 
+}
+
+#label{
+    color: #ffffff;
+    margin: 0 2px;
+    font-size: 25px;
+}
+
+#inpName{
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+#button_submit{
+    color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin: 0 6px;
+    height: 35px;
+    font-size: larger;
+}
+#button_submit:hover{
+    color: black;
+    background-color: #ffffff;
+    transition: .5;
+}

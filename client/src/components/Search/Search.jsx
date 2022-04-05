@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import { getRecipe } from '../../actions';
+import style from '../Search/Search.module.css';
 
 export function Search(props){
 
@@ -15,10 +16,10 @@ export function Search(props){
         setState("");
     }
     return(
-        <form onSubmit={(event) => {handleSubmit(event)}}>
-            <label className='labelsearchName' htmlFor='inpName'>Buscar por nombre: </label>
-            <input type='text' id='inpName' placeholder='Nombre...' value={state} onChange={handleChange}></input>
-            <button type='submit'>Buscar</button>
+        <form className={style.container} onSubmit={(event) => {handleSubmit(event)}}>
+            <label id={style.label} className='labelsearchName' htmlFor='inpName'>Buscar por nombre: </label>
+            <input id={style.inpName} type='text' placeholder='Nombre...' value={state} onChange={handleChange}></input>
+            <button id={style.button_submit} type='submit'>Buscar</button>
         </form>
     )
 }

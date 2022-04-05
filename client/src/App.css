@@ -1,4 +1,10 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@200;400&display=swap');
+.App{
+  font-family: 'Noto Serif Display', serif;
+  
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +41,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

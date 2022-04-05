@@ -1,0 +1,42 @@
+.navBar{
+    background: linear-gradient(180deg, rgba(0,0,0,1) 29%, rgba(0,0,0,0.7336309523809523) 100%);   
+    position: relative;
+}
+#navLink_Inicio{
+    text-decoration: none;
+    display: inline-flex;
+    margin-left: 60px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    /* align-items: center; */
+}
+#navLink_Create{
+    text-decoration: none;
+    display: inline-flex;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    /* align-items: center; */
+}
+#search{
+    position: absolute ;
+    top: 15px;
+    right: 50px;
+    padding-top: 5px;
+    
+}
+
+#button{
+    font-size: larger;
+    height: 35px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin: 5px 3px;
+}
+#button:hover{
+    color: black;
+    background-color: #ffffff;
+    transition: .5;
+}

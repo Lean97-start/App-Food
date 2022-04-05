@@ -4,6 +4,8 @@ import { getRecipe } from '../../actions';
 import RecipeCard from '../Recipes/RecipeCard.jsx';
 import Pagination from '../Pagination/Pagination.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
+import img from '../../assets/imag_ing_bkg.jpg'
+import style from '../Recipes/Recipes.module.css'
 
 export function Recipes(props){
     useEffect(()=>{props.getRecipe()},[]);
@@ -25,11 +27,14 @@ export function Recipes(props){
     
 
     return(
-        <div className='homeRecipes'>
-            <NavBar setPageCurrent={setPageCurrent} setStateOrder={setStateOrder}/>
+        <div className={style.homeRecipes}>
+            <img id={style.img} src={img} alt="" /><div id={style.gradient}/>
+            <header className={style.header}>
+                <NavBar setPageCurrent={setPageCurrent} setStateOrder={setStateOrder}/>
+            </header>
             <Pagination cantPages={cantPages} changePage={changePage}/> 
-            <h1>Recetas</h1>
-            <div className='cardsHome'>{!renderizarRecipes? <h3>"¡No hay recetas para mostrar, disculpe!"</h3> : renderizarRecipes.map(({id,name,image,type_diets}) => (
+            <h1 id={style.title_recipe}>Recetas</h1>
+            <div className={style.cardsHome}>{!renderizarRecipes? <h3>"¡No hay recetas para mostrar, disculpe!"</h3> : renderizarRecipes.map(({id,name,image,type_diets}) => (
                             // Renderizo cada una de las recetas
                             <RecipeCard 
                                 key = {id}
