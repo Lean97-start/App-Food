@@ -1,5 +1,5 @@
 .navBar{
-    background: linear-gradient(180deg, rgba(0,0,0,1) 29%, rgba(0,0,0,0.7336309523809523) 100%);   
+    background: linear-gradient(180deg, rgba(0,0,0,0.4544527283569678) 97%, rgba(0,0,0,0) 100%);  
     position: relative;
 }
 #navLink_Inicio{
@@ -27,8 +27,8 @@
 }
 
 #button{
-    font-size: larger;
-    height: 35px;
+    font-size: smaller;
+    height: 25px;
     color: #ffffff;
     background-color: transparent;
     border: 2px solid #ffffff;

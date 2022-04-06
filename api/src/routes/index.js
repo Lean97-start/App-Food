@@ -6,6 +6,7 @@ const axios = require('axios');
     
 const router = Router();
 const api = '1323a609c8b8420aba666bd2d26f2fb8';
+// const api = '43';
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -138,8 +139,10 @@ router.post('/recipe', async (req, res) =>{ //FUNCIONA
     name = startCapitalLetter(name)
     summary = startCapitalLetter(summary)
     try{
-        const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
-        await recipe_created.setType_diets(type_diets) //Me va a vincular el o los id/s  del tipo de dieta a la receta.
+        if(name && summary && type_diets.length){
+            const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
+            await recipe_created.setType_diets(type_diets)//Me va a vincular el o los id/s  del tipo de dieta a la receta.
+        } 
     }catch(e){
         return res.status(500).json({msg: "Ha ocurrido un error en la creación de la receta, inténtelo de nuevo"})
     }

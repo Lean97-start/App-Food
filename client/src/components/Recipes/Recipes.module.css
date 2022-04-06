@@ -1,43 +1,59 @@
-/* .homeRecipes{
+.cardsHome{
     display: grid;
-    height: 100%;
-    min-height: 100vh;
-    grid-template-columns: 1fr;
-    grid-template-rows: 4rem 1fr 8rem;
+    height: auto;
+    min-height: 100%;
+    /* min-height: 100vh; */
+    grid-gap: 20px 20px;
+    grid-template-columns: repeat(3, 300px);
+    /* grid-template-rows: repeat(3, 450px); */
+    grid-template-rows: repeat(3, auto);
     position: relative;
-} */
+    justify-content:center;
+}
 .header{
     display: inline;
 }
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4544527283569678) 97%, rgba(0,0,0,0) 100%);
+}
+
 
 #title_recipe{
     position: relative;
     display: inline-block;
     color: #ffffff;
     font-family: 'Noto Serif Display', serif;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 10%;
-    font-size: 80px;
-    /* background-color: #80411f; */
+    font-size: 60px;
     background-color: #8a4926;
     border-radius: 35px;
     padding: 15px;
 }
 
-
 #img{
     height: 100%;
     width: 100%;
     object-fit: cover;
-    position:absolute;
+    position:fixed;
     z-index: -1;
-  
 }
 
 #gradient{
     height: 100%;
     width: 100%;
     background: linear-gradient(180deg, rgba(0,0,0,0.5879726890756303) 0%, rgba(0,0,0,0.7336309523809523) 100%);
-    position:absolute;
+    position:fixed;
     z-index: -1;
+}
+
+#msg_sinRecetas{
+    color: white;
+    text-align: center;
+    font-size: 30px;
 }

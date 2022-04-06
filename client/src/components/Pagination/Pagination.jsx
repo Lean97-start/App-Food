@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './Pagination.module.css'
 
 export default function Pagination(props){
 
@@ -8,7 +9,7 @@ export default function Pagination(props){
     }
 
     return(
-        <div className='buttonsPagination'>
+        <div className={style.buttonsPagination}>
             {typeof pagesRenderizar === 'string'? <h3>{pagesRenderizar}</h3> : 
                 pagesRenderizar.map(pages => ( 
                     <button key={pages} onClick={() => props.changePage(pages)}>{pages}</button>

@@ -53,6 +53,7 @@ export function CreateRecipe(props){
     return(
         <div>
             <img id={style.img} src={img} alt="" />
+            {/* <div id={style.gradient}></div> */}
             <header>
                 <nav className={style.navBar}>
                     <Link id={style.Link_button} to={'/recipes'}><button id={style.button}>Volver</button></Link>
@@ -63,69 +64,70 @@ export function CreateRecipe(props){
 
                     <h1 id={style.h1}>Creación de receta</h1>
                     {stateError.errorSubmit && alert(stateError.errorSubmit)}
+                    {/* <div id={}> */}
+                        <form className={style.form} onSubmit={(e) => handlerSubmit(e)}>
+                            <div id={style.grid_div}>
 
-                    <form className={style.form} onSubmit={(e) => handlerSubmit(e)}>
-                        <div id={style.grid_div}>
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputName">Nombre</label>
+                                    <input value={state.name} id={style.input} name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
+                                    {stateError.name && <p className={style.danger}>{stateError.name}</p>}
+                                </div>
 
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputName">Nombre: </label>
-                                <input value={state.name} id={style.input} name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
-                                {stateError.name && <p className={style.danger}>{stateError.name}</p>}
-                            </div>
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputSummary">Resumen del plato</label>
+                                    <input value={state.summary} id={style.input} name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
+                                    {stateError.summary && <p className={style.danger}>{stateError.summary}</p>}
+                                </div>
 
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputSummary">Resumen del plato: </label>
-                                <input value={state.summary} id={style.input} name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
-                                {stateError.summary && <p className={style.danger}>{stateError.summary}</p>}
-                            </div>
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputreadyInMinutes">Tiempo de cocción</label>
+                                    <input value={state.readyInMinutes} id={style.input} name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
+                                    {stateError.readyInMinutes && <p className={style.danger}>{stateError.readyInMinutes}</p>}
+                                </div>
 
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputreadyInMinutes">Tiempo de cocción: </label>
-                                <input value={state.readyInMinutes} id={style.input} name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
-                                {stateError.readyInMinutes && <p className={style.danger}>{stateError.readyInMinutes}</p>}
-                            </div>
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputPuntuacion">Puntuación</label>
+                                    <input value={state.score} id={style.input} name='score' type="text" onChange={handlerChange}/>
+                                    {stateError.score && <p className={style.danger}>{stateError.score}</p>}
+                                </div>
 
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputPuntuacion">Puntuación: </label>
-                                <input value={state.score} id={style.input} name='score' type="text" onChange={handlerChange}/>
-                                {stateError.score && <p className={style.danger}>{stateError.score}</p>}
-                            </div>
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputImg">Imagen url</label>
+                                    <input value={state.image} id={style.input} name='image' type="text" onChange={handlerChange}/>
+                                </div>
 
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputImg">Imagen url: </label>
-                                <input value={state.image} id={style.input} name='image' type="text" onChange={handlerChange}/>
-                            </div>
-
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputComidaSaludable">Nivel de "comida saludable": </label>
-                                <input value={state.healthScore} id={style.input} name='healthScore' type="text" onChange={handlerChange}/>
-                                {stateError.healthScore && <p className={style.danger}>{stateError.healthScore}</p>}
-                            </div>
-
-                        </div>
-
-                        <div id={style.grid_campos}>
-
-                            <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputPasos">Paso a paso (Instrucciones): </label>
-                                <textarea value={state.step_by_step} id={style.input} name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
-                            </div>
-
-                            <div id={style.div_container}>
-                                <label id={style.label}>Tipos de dietas: </label>
-                                {stateError.check && <p className={style.danger}>{stateError.check}</p>}
-
-                                <div className={style.diets_list}>
-                                    {props.getTypesDiets && props.getTypesDiets.map(type_diet => (
-                                        <div key={type_diet.id}><label id={style.label_check}><input name={type_diet.name} onChange={(e) => checked(e)} type="checkbox" value={type_diet.id}/>{type_diet.name}</label></div>
-                                    ))}
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputComidaSaludable">Nivel de "comida saludable"</label>
+                                    <input value={state.healthScore} id={style.input} name='healthScore' type="text" onChange={handlerChange}/>
+                                    {stateError.healthScore && <p className={style.danger}>{stateError.healthScore}</p>}
                                 </div>
 
                             </div>
 
-                        </div>
-                        <button id={style.button_submit} type='submit'>Enviar</button>
-                    </form>
+                            <div id={style.grid_campos}>
+
+                                <div id={style.div_container}>
+                                    <label id={style.label} htmlFor="inputPasos">Paso a paso (Instrucciones)</label>
+                                    <textarea value={state.step_by_step} id={style.input} name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
+                                </div>
+
+                                <div id={style.div_container}>
+                                    <label id={style.label}>Tipos de dietas</label>
+                                    {stateError.check && <p className={style.danger}>{stateError.check}</p>}
+
+                                    <div className={style.diets_list}>
+                                        {props.getTypesDiets && props.getTypesDiets.map(type_diet => (
+                                            <div key={type_diet.id}><label id={style.label_check}><input name={type_diet.name} onChange={(e) => checked(e)} type="checkbox" value={type_diet.id}/>{type_diet.name}</label></div>
+                                        ))}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <button id={style.button_submit} type='submit'>Crear</button>
+                        </form>
+                    {/* </div> */}
                     <div id={style.button_div}>
                     </div>
                 </div>

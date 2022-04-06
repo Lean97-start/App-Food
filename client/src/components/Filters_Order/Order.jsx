@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {changeOrder, changeAlphabetical} from '../../actions';
-
+import style from './Order.module.css';
 
 
 export function Order(props){
@@ -21,13 +21,16 @@ export function Order(props){
 
 
     return(
-        <div className='allFilters'>
-            <select onChange={handlerChangeOrder}>
+        <div className={style.allFilters}>
+            <p>Ordenar por score: </p>
+            <select id={style.score} onChange={handlerChangeOrder}>
                 <option value='sinOrden'>Sin Orden</option>
                 <option value='asc'>Puntuación Ascendente</option>
                 <option value='des'>Puntuación Descendente</option>
             </select>
-            <select onChange={handlerChangeAlphabetical}>
+
+            <p>Ornenar por alfabéticamente: </p>
+            <select id={style.alphabetical} onChange={handlerChangeAlphabetical}>
                 <option value='sinOrden'>Sin Orden</option>
                 <option value='A-Z'>A-Z</option>
                 <option value='Z-A'>Z-A</option>

@@ -1,5 +1,5 @@
 .navBar{
-    background: linear-gradient(180deg, rgba(0,0,0,1) 29%, rgba(0,0,0,0.7336309523809523) 100%);   
+    background: linear-gradient(180deg, rgba(0,0,0,0.4544527283569678) 97%, rgba(0,0,0,0) 100%);  
     position: relative;
 }
 .container {
@@ -17,7 +17,7 @@
     width: 75%;
     height: 95vh;
     padding-top: 5px;
-    background-color: #a3601d;
+    background-color: #a3601dbb;
     border-radius: 15px 50px 30px
 }
 #h1{
@@ -38,17 +38,17 @@
     padding: 10px;
     /* margin: 10px 10px; */
     display: grid;
-    grid-gap: 20px 20px;
-    grid-template-columns: repeat(3, 400px);
-    grid-template-rows: repeat(2, 120px);
+    grid-gap: 10px 10px;
+    grid-template-columns: repeat(3, auto);
+    /* grid-template-columns: repeat(3, 400px); */
+    grid-template-rows: repeat(2, auto);
 }
 
 #grid_campos{
-    margin-top: -20px;;
     display: grid;
     grid-gap: 20px 20px;
     /* grid-template-columns: 35rem 40rem; */
-    grid-template-rows: 170px 150px;
+    grid-template-rows: auto auto;
 }
 
 #div_container{
@@ -78,8 +78,9 @@
     margin-top: 10px ;
     display: grid;
     grid-gap: 10px 15px;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 22px);
+    grid-template-columns: repeat(5, auto);
+    /* grid-template-rows: repeat(3, 22px); */
+    grid-template-rows: repeat(3, auto);
 }
 #label_check{
    font-size: 20px;
@@ -116,19 +117,28 @@
 }
 
 #button{
+    font-size: smaller;
+    height: 25px;
     color: #ffffff;
     background-color: transparent;
     border: 2px solid #ffffff;
     border-radius: 5px;
-    margin: 0 6px;
-    height: 35px;
-    font-size: larger;
+    margin: 5px 3px;
+    
 }
 
 #img{
-    position: absolute;
-    height: 1000px;
+    position: fixed;
+    height: 100%;
     width: 100%;
     object-fit: cover;
+    z-index: -1;
+}
+
+#gradient{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.5879726890756303) 0%, rgba(0,0,0,0.7336309523809523) 100%);
+    position:fixed;
     z-index: -1;
 }

@@ -1,11 +1,64 @@
 .cardHouse{
+    border: 2px solid #8b5e34;
+    border-radius: 50px;
+    /* display: flex;
+    flex-direction: column; */
+    overflow: hidden;
+    background: linear-gradient(0deg, rgba(88,47,14,1) 0%, rgba(127,79,36,0.911035361410189) 51%, rgba(147,102,57,1) 100%);
+}
+
+#name{
+    text-align: center;
+    color: white;
+    font-size: 100%;  
+    font-weight: bold;
+    /* height: fit-content; */
     
 }
 
-#card{
-
+#name_div{
+    height: auto;
+    min-height: 80px;
 }
 
-#diet{
+#image{
+    height: 100%;
+    width: 100%; 
+}
 
+#card{
+    text-decoration: none;
+}
+#diet{
+    padding: 0px 5px;
+}
+
+#diets{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: auto;
+    /* margin-top: 10px; */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#diets_div{
+    margin-top: -20px;
+    height: auto;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    color: #432818;
+    border-radius: 50px;
+    background-color: #a68a64;
+}
+
+#p{
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    
 }

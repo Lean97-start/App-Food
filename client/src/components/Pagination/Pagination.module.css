@@ -1,0 +1,24 @@
+.buttonsPagination > button{
+    border-radius: 17px;
+    font-size: 15px;
+    height: 25px;
+    width: 65px;
+    margin: 2px;
+    background: radial-gradient(circle, rgba(127,79,36,0.807393904827556) 78%, rgba(147,102,57,0) 100%);
+    color: #f0ead2;
+}
+
+.buttonsPagination > button:hover{
+    background-color: #ddb892;
+    color: #f0ead2;
+
+}
+
+
+.buttonsPagination{
+    position: relative;
+    display: flex;
+    padding-bottom: 25px;
+    justify-content: center;
+    margin-bottom: 10px;
+}

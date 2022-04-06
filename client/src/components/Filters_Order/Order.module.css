@@ -1,0 +1,25 @@
+.allFilters{
+    display: flex;
+    flex-direction: row;
+    padding-top: 5px;
+    align-items: center;
+}
+
+.allFilters > p{
+    color: white;
+    margin-right: -15px;
+}
+
+#score{
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: 0px 20px;
+}
+
+#alphabetical{
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: 0px 20px;
+}

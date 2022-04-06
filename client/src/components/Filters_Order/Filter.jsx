@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getTypesRecipes, filterTypesDiets, filterScore, filterCreated} from '../../actions';
-
+import style from './Filter.module.css';
 
 
 export function Filter(props){
@@ -22,11 +22,10 @@ export function Filter(props){
     }
 
     return(
-        <div className='allFilters'>
+        <div className={style.allFilters}>
             {/* Selección de score */}
             <p>Score:</p>
-
-            <select onChange={handlerScore}>
+            <select id={style.score} onChange={handlerScore}>
                 <option value='All'>All</option>
                 <option value='alto'>Alto</option>
                 <option value='medio'>Medio</option>
@@ -34,7 +33,7 @@ export function Filter(props){
             </select>
 
             <p>Mostrar recetas:</p>
-            <select onChange={handlerCreated}>
+            <select id={style.recipe} onChange={handlerCreated}>
                 <option value='All'>All</option>
                 <option value='API'>API</option>
                 <option value='My_recipes'>My recipes</option>
@@ -42,7 +41,7 @@ export function Filter(props){
 
             {/* Selección de Diets */}
             <p>Tipo de dieta:</p>
-            <select onChange={handlerTypesDiets}>
+            <select id={style.diets} onChange={handlerTypesDiets}>
                 <option key={"All"} value={"All"}>All</option>
                 {!props.getTypesDiets? null : props.getTypesDiets.map(type => {
                     return(

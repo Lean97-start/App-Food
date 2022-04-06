@@ -6,12 +6,12 @@
 #label{
     color: #ffffff;
     margin: 0 2px;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 #inpName{
     border-radius: 7px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 #button_submit{
@@ -20,8 +20,8 @@
     border: 2px solid #ffffff;
     border-radius: 5px;
     margin: 0 6px;
-    height: 35px;
-    font-size: larger;
+    height: 25px;
+    font-size: smaller;
 }
 #button_submit:hover{
     color: black;
