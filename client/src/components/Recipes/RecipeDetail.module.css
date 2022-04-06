@@ -1,13 +1,14 @@
 
 #navBar{
-    background: linear-gradient(180deg, rgba(0,0,0,1) 29%, rgba(0,0,0,0.7336309523809523) 100%);   
+    background: linear-gradient(180deg, rgba(0,0,0,0.4544527283569678) 97%, rgba(0,0,0,0) 100%);     
     position: relative;
 }
 
 #container{
     display: flex;
     justify-content: center;
-    margin: 20px;;
+    margin: 20px;
+    height: auto;
 }
 
 #table_detail{
@@ -16,6 +17,7 @@
     height: 80%;
     width: 80%;
     border-radius: 20px;
+    color: #ffffff;
 }
 
 #button_back{
@@ -23,10 +25,17 @@
     background-color: transparent;
     border: 2px solid #ffffff;
     border-radius: 5px;
-    margin: 10px 20px;
+    margin: 10px 30px;
     height: 35px;
     font-size: larger;
 }
+
+#button_back:hover{
+    color: black;
+    background-color: #ffffff;
+    transition: .5;
+}
+
 
 #img_back{
     position: fixed;
@@ -37,14 +46,15 @@
 }
 
 #img_recipe{
-    position: relative;
+    position: static;
     height: 200px;
     width: 300px;
     object-fit: cover;
     border: 2px solid white;
     border-radius: 10px 50px 30px;
-    top: 20px;
-    left: 30px;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-bottom: 30px;
 }
 
 #titulado{
@@ -88,27 +98,82 @@
     padding: 5px 0;
 }
 
-#diets_RecipeDetail{
-    display: block;
+.summary_div{
+    width: 85%;
+    height: auto;
+    margin: 0px auto;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 30px;
     border: 2px solid white;
-    /* flex-direction: column; */
+    background-color: #582f0e;
+    border-radius: 50px;
+    padding: 20px;
+}
+
+.summary_div > #summary{
+    width: 85%;
+    margin: 0 auto;
+}
+
+#diets_RecipeDetail{
+    display: flex;
+    border: 2px solid white;
+    background-color: #936639;
+    color: #ffffff;
+    flex-direction: column;
+    border-radius: 50px;
+    /* padding: 10px; */
+    width: 90%;
+    align-items: center;
+    margin: 30px auto;
+    /* margin-top: 20px; */
+    padding-bottom: 20px;
 }
 #diets_RecipeDetail > p{
     margin-left: 10px;
     font-size: 20px;
-    /* text-decoration: underline; */
-}
-
-#diets{
-    text-align: center;
+    display: inline;
+    padding-left: 5px;
     
 }
+#diets_RecipeDetail > hr{
+    width: 90%;
+}
 
+#elements_diet_dish{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
 
+#elements_diet_dish > li{
+    padding: 0 20px;
+}
+    
 #grid_Present{
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 250px;
-    border: 2px solid white;
+    /* grid-template-rows: 250px; */
+    grid-template-rows: auto;
+    /* border: 2px solid white; */
+    /* background-color: #582f0e; */
+    /* border-radius: 50px; */
+}
+
+.steps_div{
+    width: 85%;
+    height: auto;
+    margin: 0px auto;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.steps_div > #steps{
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 30px;
 }

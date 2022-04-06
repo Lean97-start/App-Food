@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     image: {
-      type: DataTypes.STRING, //Es un string el cual tiene la dirección de la foto.
+      type: DataTypes.TEXT, //Es un string el cual tiene la dirección de la foto.
       allowNull: true
     },
     readyInMinutes: {

@@ -1,10 +1,13 @@
 .cardHouse{
     border: 2px solid #8b5e34;
     border-radius: 50px;
-    /* display: flex;
-    flex-direction: column; */
-    overflow: hidden;
+    overflow: hidden; 
+    /* Hidden oculta los bordes, para que el radios se pueda ver bien */
     background: linear-gradient(0deg, rgba(88,47,14,1) 0%, rgba(127,79,36,0.911035361410189) 51%, rgba(147,102,57,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: auto;
 }
 
 #name{
@@ -23,7 +26,8 @@
 
 #image{
     height: 100%;
-    width: 100%; 
+    width: 100%;
+    object-fit: cover; 
 }
 
 #card{
@@ -49,10 +53,11 @@
     min-height: 100px;
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
     color: #432818;
     border-radius: 50px;
     background-color: #a68a64;
+    margin-bottom: 0;
+    padding-bottom: 10px;
 }
 
 #p{

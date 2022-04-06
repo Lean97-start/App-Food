@@ -35,28 +35,31 @@ export function RecipeDetail(props){
                                 <span id={style.score}>Puntaje: {rec.score}</span>
                             </div>
                         </div>
+                        <div className={style.summary_div}>
+                            <p id={style.title_summary}>Resumen: </p>
+                            <p id={style.summary}>{rec.summary}</p>
                         <div id={style.diets_RecipeDetail}>
-                            <p>Tipo de dieta: </p>
-                            <div id={style.diets}>
+                            <p>Tipo de dieta</p>
+                            <div id={style.elements_diet_dish}>
                                 {rec.type_diets.map(diet => (
                                     <li key={diet}>{diet}</li>
                                     ))}
                             </div>
-                        </div>
-                        <br />
-                        <div className='diets_RecipeDetail'>
-                            <p>Plato para: </p>
+                            <hr/>
+                            <p>Plato para</p>
+                            <div id={style.elements_diet_dish}>
                                 {rec.dishTypes.map((dish) =>(
                                     <li key={dish}>{dish}</li>
                                 ))}
+                            </div>
                         </div>
-                        <h4>{rec.summary}</h4>
-                        <div className='pasoDetailRecipe'>
+                        <div className={style.steps_div}>
                             {/* {rec.step_by_step.map(steps =>( */}
-                                <p>Pasos: </p>
-                                <p>{rec.step_by_step}</p>
+                                <p id={style.title_step}>Pasos: </p>
+                                <p id={style.steps}>{rec.step_by_step}</p>
                             {/* ))} */}
                         </div> 
+                        </div>
                     </div>
                 </div>
             }

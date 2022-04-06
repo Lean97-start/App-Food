@@ -20,9 +20,11 @@ export default function RecipeCard({id,name, image, type_diets}) {
             <div id={style.diets_div}>
                 <p id={style.p}>Tipo de dieta</p>
                 <div id={style.diets}>
-                    {type_diets.map((diet) => (
-                        <span key={diet} id={style.diet}><li>{diet}</li></span>
-                    ))}
+                    {(!type_diets.length)?<span>No tiene una dieta específica</span> : 
+                        type_diets.map((diet) => (
+                            <span key={diet} id={style.diet}><li>{diet}</li></span>
+                        )
+                    )}
                 </div>
             </div>
             

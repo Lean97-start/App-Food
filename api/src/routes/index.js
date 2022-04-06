@@ -138,6 +138,7 @@ router.post('/recipe', async (req, res) =>{ //FUNCIONA
     (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes = dishJoin.join('-');
     name = startCapitalLetter(name)
     summary = startCapitalLetter(summary)
+    // console.log(type_diets)
     try{
         if(name && summary && type_diets.length){
             const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
