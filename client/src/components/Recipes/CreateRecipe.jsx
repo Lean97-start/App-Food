@@ -56,7 +56,7 @@ export function CreateRecipe(props){
             {/* <div id={style.gradient}></div> */}
             <header>
                 <nav className={style.navBar}>
-                    <Link id={style.Link_button} to={'/recipes'}><button id={style.button}>Volver</button></Link>
+                    <Link id={style.Link_button} to={'/recipes'}><button id={style.button_back}>Volver</button></Link>
                 </nav>
             </header>
             <div className={style.container}>
@@ -81,7 +81,7 @@ export function CreateRecipe(props){
                                 </div>
 
                                 <div id={style.div_container}>
-                                    <label id={style.label} htmlFor="inputreadyInMinutes">Tiempo de cocción</label>
+                                    <label id={style.label} htmlFor="inputreadyInMinutes">Tiempo de cocción (En minutos)</label>
                                     <input value={state.readyInMinutes} id={style.input} name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
                                     {stateError.readyInMinutes && <p className={style.danger}>{stateError.readyInMinutes}</p>}
                                 </div>

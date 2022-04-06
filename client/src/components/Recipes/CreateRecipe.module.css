@@ -4,7 +4,7 @@
 }
 .container {
     display: flex;
-    margin-top: 40px;
+    margin-top: 20px;
     position: relative;
     flex-direction: column;
     align-items: center;
@@ -15,7 +15,7 @@
     align-content: center;
     padding: 25px;
     width: 75%;
-    height: 95vh;
+    height: auto;
     padding-top: 5px;
     background-color: #a3601dbb;
     border-radius: 15px 50px 30px
@@ -29,7 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
+    height: auto;
     border-radius: 20px;
 }
 
@@ -73,7 +73,7 @@
 
 .diets_list {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     padding: 5px 5px;
     margin-top: 10px ;
     display: grid;
@@ -103,20 +103,29 @@
     border-radius: 5px;
     height: 35px;
     font-weight:  bold;
-    width: 200px;
+    width: 300px;
     justify-content: center;
     align-items: center;
     margin-top: 45px; 
+    margin-bottom: 15px;
+    background-color: #fff;
 }
+
+#button_submit:hover{
+    background-color: #a3601dbb;
+    color: #ffffff;
+    cursor:pointer
+}
+
 #Link_button{
     text-decoration: none;
     display: inline-flex;
-    margin-left: 55px;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin-left: 60px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
-#button{
+#button_back{
     font-size: smaller;
     height: 25px;
     color: #ffffff;
@@ -125,6 +134,12 @@
     border-radius: 5px;
     margin: 5px 3px;
     
+}
+
+#button_back:hover{
+    color: black;
+    background-color: #ffffff;
+    transition: .5;
 }
 
 #img{
