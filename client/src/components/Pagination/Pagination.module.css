@@ -11,9 +11,7 @@
 .buttonsPagination > button:hover{
     background-color: #ddb892;
     color: #f0ead2;
-
 }
-
 
 .buttonsPagination{
     position: relative;

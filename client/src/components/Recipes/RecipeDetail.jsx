@@ -11,6 +11,12 @@ export function RecipeDetail(props){
     const {id} = props.match.params;
     useEffect(() => props.recipe_id({data: `/${id}`, type_passed: 'id'}),[]);
 
+    function htmlToTextPlane(textHtml){ //Con la expresion regular parseo el textoHTML a texto plano.
+        return (textHtml)? textHtml.replace(/(<([^>]+)>)/ig, '') : null;
+    }
+
+
+
     let rec = props.getRecipe;
     return(
         <div id={style.body} className='RecipeDetail'>
@@ -36,29 +42,29 @@ export function RecipeDetail(props){
                             </div>
                         </div>
                         <div className={style.summary_div}>
-                            <p id={style.title_summary}>Resumen: </p>
-                            <p id={style.summary}>{rec.summary}</p>
-                        <div id={style.diets_RecipeDetail}>
-                            <p>Tipo de dieta</p>
-                            <div id={style.elements_diet_dish}>
-                                {rec.type_diets.map(diet => (
-                                    <li key={diet}>{diet}</li>
+                                <p id={style.title_summary}>Resumen: </p>
+                                <p id={style.summary}>{htmlToTextPlane(rec.summary)}</p>
+                            <div id={style.diets_RecipeDetail}>
+                                <p>Tipo de dieta</p>
+                                <div id={style.elements_diet_dish}>
+                                    {rec.type_diets.map(diet => (
+                                        <li key={diet}>{diet}</li>
+                                        ))}
+                                </div>
+                                <hr/>
+                                <p>Tipo de plato</p>
+                                <div id={style.elements_diet_dish}>
+                                    {rec.dishTypes.map((dish) =>(
+                                        <li key={dish}>{dish}</li>
                                     ))}
+                                </div>
                             </div>
-                            <hr/>
-                            <p>Plato para</p>
-                            <div id={style.elements_diet_dish}>
-                                {rec.dishTypes.map((dish) =>(
-                                    <li key={dish}>{dish}</li>
-                                ))}
-                            </div>
-                        </div>
-                        <div className={style.steps_div}>
-                            {/* {rec.step_by_step.map(steps =>( */}
-                                <p id={style.title_step}>Pasos: </p>
-                                <p id={style.steps}>{rec.step_by_step}</p>
-                            {/* ))} */}
-                        </div> 
+                            <div className={style.steps_div}>
+                                {/* {rec.step_by_step.map(steps =>( */}
+                                    <p id={style.title_step}>Pasos: </p>
+                                    <p id={style.steps}>{htmlToTextPlane(rec.step_by_step)}</p>
+                                {/* ))} */}
+                            </div> 
                         </div>
                     </div>
                 </div>

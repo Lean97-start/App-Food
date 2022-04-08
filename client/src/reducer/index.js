@@ -32,6 +32,7 @@ const rootReducer = (state = initialValues, {type, payload}) => {
             //Si me viene cualquier tipo de dieta, me la va a filtrar las distintas recetas que tengan esa dieta, caso contrario, muestra todo. 
             if(payload === 'All'){ return {...state, recipes: AllRecipes}}
             else{ return {...state, recipes: AllRecipes.filter(recipe => {return recipe.type_diets.includes(payload)})}}
+        
         case FILTER_CREATED:
             
             if(payload === 'All'){ return {...state, recipes: AllRecipes}}
@@ -40,9 +41,6 @@ const rootReducer = (state = initialValues, {type, payload}) => {
 
             
         case FILTER_SCORE:
-            // let scores_total = AllRecipes.reduce((a,b) => {return (a.score > b.score)? a : b}, 0);
-            // let bajo = scores_total.score * (1/3)
-            // let medio = scores_total.score * (2/3)
             
             if(payload === 'bajo'){return {...state, recipes: AllRecipes.filter(recipe => recipe.score <= 10)}}
             else if(payload === 'medio'){return {...state, recipes: AllRecipes.filter(recipe => (recipe.score <= 20 && recipe.score >= 10))}}
@@ -84,6 +82,7 @@ const rootReducer = (state = initialValues, {type, payload}) => {
                     else return 0
                 })
             }else{
+                console.log(AllRecipes)
                 arrayOrderAlphabetical = AllRecipes
             }
             return {...state, recipes: arrayOrderAlphabetical}

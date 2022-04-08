@@ -6,27 +6,34 @@ import style from '../Recipes/CreateRecipe.module.css';
 import img from '../../assets/img_bkg_create.jpg'
 export function CreateRecipe(props){
 
-    useEffect(() => {props.getTypesRecipes()},[])
+    const [button_Submit_State, setButton_Submit_State] = useState(true)
     const [stateError, setErrorState] = useState({})
     const [state, setState] = useState({
         name:"",
         summary: "",
-        score:0,
-        healthScore: 0,
+        score:"",
+        healthScore: "",
         step_by_step:"",
         image:"",
-        readyInMinutes: 0, 
+        readyInMinutes: "", 
         dishTypes: null, 
         type_diets: [],
     })
-
+    useEffect(() => {
+        props.getTypesRecipes()
+        validateForm(state)
+    },[state])
+    
     function handlerChange(e){
         setErrorState(validateForm({...state, [e.target.name]: e.target.value}));
         setState({...state, [e.target.name]: e.target.value});
-    }
+        if(state.name && state.summary && !stateError.name && !stateError.summary){setButton_Submit_State(false)}
+        else{setButton_Submit_State(true)}
+    }    
 
     function checked(e){
         let array_types = state.type_diets; //Arreglo aux para poder sincronizar los datos y settearlos despues de verificar.
+        validateForm(state)
         if(e.target.checked){
             let aux = array_types.includes(e.target.value);
             if(!aux){array_types.push(e.target.value)}
@@ -34,22 +41,24 @@ export function CreateRecipe(props){
             array_types = array_types.filter(check => check !== e.target.value)
         } 
         setState({...state, type_diets: array_types})
-    }
-   
+    }    
     
     function handlerSubmit(e){
         e.preventDefault();
         setErrorState(validateForm({...state, [e.target.name]: e.target.value}));
-        if(!state.type_diets.length){setErrorState({...stateError, check: "Debe seleccionar al menos un tipo de dieta"})}
-        if(stateError.name || stateError.summary || stateError.score || stateError.healthScore || stateError.readyInMinutes || stateError.check){
-            setErrorState({...stateError, errorSubmit: "Campos con errores"});
-        }else{
-            stateError.errorSubmit && alert(stateError.errorSubmit);
-            props.postRecipe(state)
-            setState({ name:"", summary: "", score:0, healthScore: 0, step_by_step:"", image:"", readyInMinutes: 0, dishTypes: null, type_diets: [],})
+        let error;
+        if(stateError.name || stateError.summary || stateError.score || stateError.healthScore || stateError.readyInMinutes){
+            error = "Campos con errores o sin llenar";
         }
-        
+        if(error){
+             alert(error);}
+        else{
+            props.postRecipe(state)
+            setState({ name:"", summary: "", score:"", healthScore: "", step_by_step:"", image:"", readyInMinutes: "", dishTypes: null, type_diets: [],})
+            setErrorState({});
+        }
     }
+ 
     return(
         <div>
             <img id={style.img} src={img} alt="" />
@@ -64,31 +73,30 @@ export function CreateRecipe(props){
 
                     <h1 id={style.h1}>Creación de receta</h1>
                     {stateError.errorSubmit && alert(stateError.errorSubmit)}
-                    {/* <div id={}> */}
                         <form className={style.form} onSubmit={(e) => handlerSubmit(e)}>
                             <div id={style.grid_div}>
 
                                 <div id={style.div_container}>
-                                    <label id={style.label} htmlFor="inputName">Nombre</label>
+                                    <label id={style.label} htmlFor="inputName">Nombre (*)</label>
                                     <input value={state.name} id={style.input} name='name' type="text" onChange={handlerChange} placeholder='Nombre...'/>
                                     {stateError.name && <p className={style.danger}>{stateError.name}</p>}
                                 </div>
 
                                 <div id={style.div_container}>
-                                    <label id={style.label} htmlFor="inputSummary">Resumen del plato</label>
+                                    <label id={style.label} htmlFor="inputSummary">Resumen del plato (*)</label>
                                     <input value={state.summary} id={style.input} name='summary' type="text" onChange={handlerChange} placeholder='Resumen del plato...'/>
                                     {stateError.summary && <p className={style.danger}>{stateError.summary}</p>}
                                 </div>
 
                                 <div id={style.div_container}>
                                     <label id={style.label} htmlFor="inputreadyInMinutes">Tiempo de cocción (En minutos)</label>
-                                    <input value={state.readyInMinutes} id={style.input} name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción...'/>
+                                    <input value={state.readyInMinutes} id={style.input} name='readyInMinutes' type="text" onChange={handlerChange} placeholder='Tiempo de cocción en minutos...'/>
                                     {stateError.readyInMinutes && <p className={style.danger}>{stateError.readyInMinutes}</p>}
                                 </div>
 
                                 <div id={style.div_container}>
                                     <label id={style.label} htmlFor="inputPuntuacion">Puntuación</label>
-                                    <input value={state.score} id={style.input} name='score' type="text" onChange={handlerChange}/>
+                                    <input value={state.score} id={style.input} name='score' type="text" onChange={handlerChange} placeholder={"0 - 100"}/>
                                     {stateError.score && <p className={style.danger}>{stateError.score}</p>}
                                 </div>
 
@@ -99,7 +107,7 @@ export function CreateRecipe(props){
 
                                 <div id={style.div_container}>
                                     <label id={style.label} htmlFor="inputComidaSaludable">Nivel de "comida saludable"</label>
-                                    <input value={state.healthScore} id={style.input} name='healthScore' type="text" onChange={handlerChange}/>
+                                    <input value={state.healthScore} id={style.input} name='healthScore' type="text" onChange={handlerChange} placeholder={"0 - 100"}/>
                                     {stateError.healthScore && <p className={style.danger}>{stateError.healthScore}</p>}
                                 </div>
 
@@ -125,16 +133,15 @@ export function CreateRecipe(props){
                                 </div>
 
                             </div>
-                            <button id={style.button_submit} type='submit'>Crear</button>
+                            <button disabled={button_Submit_State} id={style.button_submit} type='submit'>Crear</button>
                         </form>
-                    {/* </div> */}
-                    <div id={style.button_div}>
-                    </div>
+                    {/* <div id={style.button_div}></div> */}
                 </div>
             </div>    
         </div>
     )
 }
+
 
 export function validateForm(data){
     let errors ={}; //Objeto para settear los errores.
@@ -147,25 +154,20 @@ export function validateForm(data){
     else if(!/^[A-Za-z0-9\s]+$/g.test(data.summary)){errors.summary = "No debe contener ningún cáracter especial"} //debe contener caracteres alfanumericos y no solamente números
     else if(Number.isInteger(parseInt(data.summary[0]))){errors.summary = "No debe comenzar con números"}
     
+    // if(!/^((100(\.0{1,2})?)|(\d{1,2}(\.\d{1,2})?))$/.test(data.score)){errors.score = "Puntuación solo acepta números decimales o enteros de 0 a 100"}//debe contener caracteres letras, solamente números
     if(!/^([0-9])*$/.test(data.score)){errors.score = "Puntuación solo acepta números"}//debe contener caracteres letras, solamente números
     
-    if(!/^([0-9])*$/.test(data.healthScore)){errors.healthScore = "Comida saludable solo acepta números"}//debe contener caracteres letras, solamente números
+    // if(!/^((100(\.0{1,2})?)|(\d{1,2} (\.\d{1,2})?))$/.test(data.healthScore)){errors.healthScore = "Comida saludable solo acepta números decimales o enteros de 0 a 100"}//debe contener caracteres letras, solamente números
+    if(!/^([0-9])*$/.test(data.healthScore)){errors.healthScore = "Comida saludable solo acepta números decimales o enteros de 0 a 100"}//debe contener caracteres letras, solamente números
     
     if(!/^([0-9])*$/.test(data.readyInMinutes)){errors.readyInMinutes = "Tiempo de cocción solo acepta números"}//debe contener caracteres letras, solamente números
     
-    
+    // if(!data.type_diets.length){errors.check = "Debe seleccionar al menos un tipo de dieta"} //Debe seleccionar al menos un campo
+
     return errors;
 }
 
-/*
-[ ] Un formulario controlado con JavaScript con los siguientes campos:
-    -Nombre
-    -Resumen del plato
-    -Puntuación
-    -Nivel de "comida saludable"
-    -Paso a paso
-[ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
-[ ] Botón/Opción para crear una nueva receta */
+
 export function mapStateToProps(state){
     return {
         getTypesDiets: state.types_diets,
