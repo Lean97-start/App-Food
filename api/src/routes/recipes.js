@@ -1,10 +1,11 @@
 const { Router } = require('express');
+require('dotenv').config();
 const {Recipe, Type_diet} = require('../db.js'); //Los importo de db.js porque en ese archivo se le aplico la fn sequelize para que pueda interactuar con la BD
 const axios = require('axios');
 // const {DB_USER, DB_PASSWORD, DB_HOST} = require(process.env)
 
 const router = Router()
-const api = '43776671d5c54a22a99c73b95949befb';
+const api = process.env.API1;
 
 async function addType(array){
     await Promise.all(array.map(type => {Type_diet.findOrCreate({where: {name: type}})}))
