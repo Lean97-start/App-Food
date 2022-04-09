@@ -16,16 +16,16 @@ export function Recipes(props) {
   const [cantRecipePage, setCantRecipePage] = useState(9); //Este state se va a encargar de la cantidad de recetas a renderizar
   const lastRecipePage = cantRecipePage * pageCurrent; //Multiplico la cantidad recetas a renderizar por la pagina en la que estoy. Esta multiplicacion me va a dar el ultimo valor que renderizaria.
   const initialRecipe = lastRecipePage - cantRecipePage; //Al restarle, si le cambio el valor de cantidad de elementos a renderizar me seguira dando el numero de la card inicial.
-  let cantPages = props.recipes
-    ? Math.floor(props.recipes.length / cantRecipePage)
-    : undefined;
-  let renderizarRecipes = props.recipes
-    ? props.recipes.slice(initialRecipe, lastRecipePage)
-    : [];
-
-  function changePage(numberPage) {
-    //Setteo la pagina a la cual quiero dirigirme
+  if(!props.recipes.msg){
+  var cantPages = props.recipes ? Math.floor(props.recipes.length / cantRecipePage): undefined;
+  var renderizarRecipes = props.recipes? props.recipes.slice(initialRecipe, lastRecipePage): []; //Separo las cards a renderizar del resto de todas las cards para mostrarlas en la pagina actual.
+}
+  function changePage(numberPage) {//Setteo la pagina a la cual quiero dirigirme
     setPageCurrent(numberPage);
+  }
+
+  function returnNotFoundRecipe(){
+    props.getRecipe();
   }
 
   return (
@@ -41,20 +41,25 @@ export function Recipes(props) {
       </div>
       <h1 id={style.title_recipe}>Recetas</h1>
       
-      {/* {(!renderizarRecipes.length)?(<h3 id={style.msg_sinRecetas}>¡No hay recetas para mostrar, disculpe!</h3>):null} */}
-      {(!renderizarRecipes.length)?(<h3 id={style.msg_sinRecetas}>Cargando...</h3>):null}
-        <div className={style.cardsHome}>
-          {renderizarRecipes.map(({ id, name, image, type_diets }) => (
-            // Renderizo cada una de las recetas
-            <RecipeCard
-              key={id}
-              id={id}
-              name={name}
-              image={image}
-              type_diets={type_diets}
-              />
-          ))}
-        </div>
+      {(props.recipes.hasOwnProperty('msg'))?
+        <div>
+          <h3 id={style.msg_sinRecetas}>{props.recipes.msg}</h3>
+          <button id={style.button_notfoundRecipeBack} onClick={returnNotFoundRecipe}>Regresar</button>
+        </div>:
+        (!renderizarRecipes.length)?(<h3 id={style.msg_sinRecetas}>Cargando...</h3>):
+          <div className={style.cardsHome}>
+            {renderizarRecipes.map(({ id, name, image, type_diets }) => (
+              // Renderizo cada una de las recetas
+              <RecipeCard
+                key={id}
+                id={id}
+                name={name}
+                image={image}
+                type_diets={type_diets}
+                />
+            ))}
+          </div>
+        }
         <Pagination cantPages={cantPages} changePage={changePage} />
     </div>
   );

@@ -87,6 +87,10 @@ const rootReducer = (state = initialValues, {type, payload}) => {
             }
             return {...state, recipes: arrayOrderAlphabetical}
 
+
+        case "limpiarStatePost":
+            return {...state, statePost: {}}
+
         default: 
             return state;
     }

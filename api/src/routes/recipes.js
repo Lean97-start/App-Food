@@ -89,7 +89,7 @@ router.get("/:id", async (req, res) => { //FUNCIONA
         try{
             valor = await Recipe.findByPk(id_rec, {include: {model: Type_diet}});
             return res.status(200).json(formatSettings(valor.dataValues, 'BD'));
-        }catch(e){console.log(e)}
+        }catch(e){return error_response()}
     }else{
         return error_response()
     }

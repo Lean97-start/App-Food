@@ -1,13 +1,13 @@
 import React, {useEffect, useState}from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
-import { getTypesRecipes , postRecipe} from '../../actions';
+import { Link, useHistory  } from 'react-router-dom';
+import { getTypesRecipes , postRecipe, limpiarStatePost} from '../../actions';
 import style from '../Recipes/CreateRecipe.module.css';
 import img from '../../assets/img_bkg_create.jpg'
 
 
 export function CreateRecipe(props){
-
+    let history = useHistory()
     const [button_Submit_State, setButton_Submit_State] = useState(true)
     const [stateError, setErrorState] = useState({})
     const [state, setState] = useState({
@@ -23,7 +23,11 @@ export function CreateRecipe(props){
     })
     useEffect(() => {
         props.getTypesRecipes()
-    },[state])
+    },[]);
+
+    // useEffect(() => {
+    //     history.push(`/recipes/${props.statePost.id}`)
+    // },[props.statePost])
     
     function handlerChange(e){
         setErrorState(validateForm({...state, [e.target.name]: e.target.value}));
@@ -42,8 +46,9 @@ export function CreateRecipe(props){
             array_types = array_types.filter(check => check !== e.target.value)
         } 
         setState({...state, type_diets: array_types})
-    }    
-    
+    }   
+
+
     function handlerSubmit(e){
         e.preventDefault();
         setErrorState(validateForm({...state, [e.target.name]: e.target.value}));
@@ -58,19 +63,20 @@ export function CreateRecipe(props){
             setState({ name:"", summary: "", score:"", healthScore: "", step_by_step:"", image:"", readyInMinutes: "", dishTypes: null, type_diets: [],})
             setErrorState({});
             setButton_Submit_State(true);
-            redi();
-  
+            alert("Receta creada con éxito")
+            history.push('/recipes')
         }
     }
+    // if(props.statePost.id){
+    //     alert(props.statePost.msg)
+    //     props.limpiarStatePost()
+    //     history.push('/recipes/'+props.statePost.id)
+    // }
 
-    function redi(){
-        console.log(props.statePost)
-    }
- 
+
     return(
         <div>
             <img id={style.img} src={img} alt="" />
-            {/* <div id={style.gradient}></div> */}
             <header>
                 <nav className={style.navBar}>
                     <Link id={style.Link_button} to={'/recipes'}><button id={style.button_back}>Volver</button></Link>
@@ -160,9 +166,9 @@ export function validateForm(data){
     else if(!/^[A-Za-z0-9\s]+$/g.test(data.summary)){errors.summary = "No debe contener ningún cáracter especial"} //debe contener caracteres alfanumericos y no solamente números
     else if(Number.isInteger(parseInt(data.summary[0]))){errors.summary = "No debe comenzar con números"}
     
-    if(!/^(\d{1,2}(\.\d{1,2})?)$/.test(data.score)){errors.score = "Puntuación solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números
+    if(!/^(\d{1,2}(\.\d{1,2})?)*$/.test(data.score)){errors.score = "Puntuación solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números
     
-    if(!/^(\d{1,2}(\.\d{1,2})?)$/.test(data.healthScore)){errors.healthScore = "Comida saludable solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números
+    if(!/^(\d{1,2}(\.\d{1,2})?)*$/.test(data.healthScore)){errors.healthScore = "Comida saludable solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números
     
     if(!/^([0-9])*$/.test(data.readyInMinutes)){errors.readyInMinutes = "Tiempo de cocción solo acepta números"}//debe contener caracteres letras, solamente números
     
@@ -175,13 +181,14 @@ export function validateForm(data){
 export function mapStateToProps(state){
     return {
         getTypesDiets: state.types_diets,
-        statePost: state.statePost
+        statePost: state.statePost,
     }
 }
 export function mapDispatchToProps(dispatch){
     return {
         getTypesRecipes: () => dispatch(getTypesRecipes()),
-        postRecipe: (datas) => dispatch(postRecipe(datas))
+        postRecipe: (datas) => dispatch(postRecipe(datas)),
+        limpiarStatePost: () => dispatch(limpiarStatePost())
     }
 }
 

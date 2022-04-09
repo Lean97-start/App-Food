@@ -57,3 +57,19 @@
     text-align: center;
     font-size: 30px;
 }
+
+#button_notfoundRecipeBack{
+    font-size: smaller;
+    height: 25px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    position: relative;
+    margin-left: 45%;
+}
+#button_notfoundRecipeBack:hover{
+    color: black;
+    background-color: #ffffff;
+    transition: .5;
+}

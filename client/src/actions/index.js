@@ -32,7 +32,7 @@ export function getRecipe(payload){
             //payload.data me da el valor del query o el id. Y en type_passed le digo explicitamente que es. 
             return axios.get(`${local}recipes${payload.data}`)
             .then(recipes => dispatch({type: GET_RECIPES, payload: {recipes: recipes, type_passed: payload.type_passed}}))
-            .catch(e => console.log(e))}
+            .catch(e => alert("No se ha encontrado ninguna receta con ese nombre."))}
     }
 }
 
@@ -45,6 +45,7 @@ export function filterScore(payload){
 export function filterCreated(payload){
     return {type: FILTER_CREATED, payload}
 }
+
 export function changeOrder(payload){
     return {type: ORDER_SCORE, payload}
 }
@@ -54,10 +55,13 @@ export function changeAlphabetical(payload){
 
 export function postRecipe(payload){
     //Recibe los datos que vienen del formulario y lo paso por medio del payload al backend.
-    
     return (dispatch) => {
         return axios.post(`${local}recipe`, payload)
-        // .then(() => alert( "Receta creada con éxito"), () => alert("Ocurrío un error en la creación de la receta, intente de nuevo"))
+        // .then(() => console.log("Receta creada con éxito"), () => console.log("Ocurrío un error en la creación de la receta, intente de nuevo"))
         .then((response) => dispatch({type: CREATE_RECIPE, payload: response.data}), (response) => dispatch({type: CREATE_RECIPE, payload: response.data}))       
     }
+}
+
+export function limpiarStatePost(){
+    return {type: "limpiarStatePost"}
 }
