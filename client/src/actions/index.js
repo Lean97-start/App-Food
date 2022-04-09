@@ -45,7 +45,6 @@ export function filterScore(payload){
 export function filterCreated(payload){
     return {type: FILTER_CREATED, payload}
 }
-
 export function changeOrder(payload){
     return {type: ORDER_SCORE, payload}
 }
@@ -58,7 +57,7 @@ export function postRecipe(payload){
     
     return (dispatch) => {
         return axios.post(`${local}recipe`, payload)
-        .then(() => alert( "Receta creada con éxito"), () => alert("Ocurrío un error en la creación de la receta, intente de nuevo"))
-        // .then((response) => dispatch({type: CREATE_RECIPE, payload:{response: response.data, result: true}}), (response) => dispatch({type: CREATE_RECIPE, payload: {response: response.data , result: false}}))       
+        // .then(() => alert( "Receta creada con éxito"), () => alert("Ocurrío un error en la creación de la receta, intente de nuevo"))
+        .then((response) => dispatch({type: CREATE_RECIPE, payload: response.data}), (response) => dispatch({type: CREATE_RECIPE, payload: response.data}))       
     }
 }

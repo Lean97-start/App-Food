@@ -14,7 +14,7 @@ export function NavBar(props){
 
     return(
         <nav className={style.navBar}>
-            <NavLink id={style.navLink_Inicio} to='/recipes'><button id={style.button} onClick={handlerOnclick}>Inicio</button></NavLink>
+            <NavLink id={style.navLink_Inicio} to='/'><button id={style.button} onClick={handlerOnclick}>Inicio</button></NavLink>
             <NavLink id={style.navLink_Create} to='/createRecipe'><button id={style.button}>Crear Receta</button></NavLink>
             <div id={style.search}><Search/></div>
         </nav>

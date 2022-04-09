@@ -21,27 +21,33 @@ module.exports = (sequelize) => {
     },
     score: { //Puntaje
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: true,
+      defaultValue: null,
     },
     healthScore: { //nivel de "comida saludable"
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: true,
+      defaultValue: null,
     },
     step_by_step: { //Paso a paso de la receta
       type: DataTypes.TEXT, //No se cuantos pasos puede ocupar la receta, por lo cual, le asigno un text para que el usuario escriba tanto como quiera.
-      allowNull: true
+      allowNull: true,
+      defaultValue: null,
     },
     image: {
       type: DataTypes.TEXT, //Es un string el cual tiene la dirección de la foto.
-      allowNull: true
+      allowNull: true,
+      defaultValue: null,
     },
     readyInMinutes: {
       type: DataTypes.INTEGER, //Tiempo en el que tarda en estar listo.
-      allowNull: true
+      allowNull: true,
+      defaultValue: null,
     },
     dishTypes: {
       type: DataTypes.STRING, //Tipo de plato de la receta
-      allowNull: true
+      allowNull: true,
+      defaultValue: null,
     },
     // ingredients:{
     //   type: DataTypes.TEXT,

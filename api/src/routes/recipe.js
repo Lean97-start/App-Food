@@ -1,24 +1,33 @@
 const { Router } = require('express');
-const {Recipe} = require ('../db.js');
+const { Recipe } = require ('../db.js');
+const { Op } = require("sequelize");
 
 const router = Router();
 
 router.post('/', async (req, res) =>{ //FUNCIONA
-    function startCapitalLetter(word){ //Para poner la primer letra del nombre en mayuscula
+    //Función para poner la primer letra del nombre en mayúscula
+    function startCapitalLetter(word){ 
         inicio = word.slice(0,1)
         resto = word.slice(1)
         inicio = inicio.toUpperCase();
         return  inicio.concat(resto);
     }
+
     let {name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes, type_diets} = req.body; 
+
+    //VALIDACIONES
     if(!name) return res.status(400).json({msg: "No ingreso ningun nombre para la receta"});
     if(!summary) return res.status(400).json({msg: "No ingreso ningun resumen para la receta"});
     // if(!type_diets) return res.status(400).json({msg: "No selecciono ningun tipo de dieta para la receta"});
     let dishJoin = dishTypes;
     (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes = dishJoin.join('-');
+    if(!score){score = null}
+    if(!healthScore){healthScore = null}
+    if(!readyInMinutes){readyInMinutes = null}
+
     name = startCapitalLetter(name)
     summary = startCapitalLetter(summary)
-    // console.log(type_diets)
+    
     try{
         if(name && summary){
             const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
@@ -27,8 +36,11 @@ router.post('/', async (req, res) =>{ //FUNCIONA
     }catch(e){
         return res.status(500).json({msg: "Ha ocurrido un error en la creación de la receta, inténtelo de nuevo"})
     }
-    // return res.redirect(`/recipes/${recipe_created.id}`);
-    return res.status(200).json({msg: "Receta creada correctamente."});
+    
+    const searchname_BD = await Recipe.findAll({attributes: ['id'] ,where:{ [Op.and]: [{name}, {summary}, {step_by_step}]}});
+    console.log(searchname_BD[0].dataValues.id)
+    // return res.status(200).json({msg: "Receta creada correctamente."}).redirect('../recipes/'+searchname_BD[0].dataValues.id);
+    return res.status(200).json({msg: "Receta creada correctamente." , id: searchname_BD[0].dataValues.id});
 })
 
 module.exports = router;

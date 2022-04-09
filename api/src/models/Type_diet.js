@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING, //Nombre del tipo de dieta
             allowNull: true,
+            defaultValue: null,
         }
     },{timestamps: false})
 }

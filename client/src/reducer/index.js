@@ -25,8 +25,8 @@ const rootReducer = (state = initialValues, {type, payload}) => {
             {...state, recipes: payload.recipes.data}
 
         case CREATE_RECIPE:
-            // return {...state, statePost: {msg: payload.response.msg, result: payload.result}};  
-            return state;
+            return {...state, statePost: {msg: payload.msg, id: payload.id}};  
+            // return state;
 
         case FILTER_TYPES_DIETS:
             //Si me viene cualquier tipo de dieta, me la va a filtrar las distintas recetas que tengan esa dieta, caso contrario, muestra todo. 

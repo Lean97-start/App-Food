@@ -22,16 +22,16 @@ export function Order(props){
 
     return(
         <div className={style.allFilters}>
-            <p>Ordenar por score: </p>
-            <select id={style.score} onChange={handlerChangeOrder}>
-                <option value='sinOrden'>Sin Orden</option>
+            <p>Ordenar por puntuación: </p>
+            <select value={"sinOrden"} id={style.score} onChange={handlerChangeOrder}>
+                <option value="sinOrden" disabled hidden>Sin Orden</option>
                 <option value='asc'>Puntuación Ascendente</option>
                 <option value='des'>Puntuación Descendente</option>
             </select>
 
             <p>Ornenar por alfabéticamente: </p>
-            <select id={style.alphabetical} onChange={handlerChangeAlphabetical}>
-                <option value='sinOrden'>Sin Orden</option>
+            <select value={"sinOrden"} id={style.alphabetical} onChange={handlerChangeAlphabetical}>
+                <option value='sinOrden' disabled hidden>Sin Orden</option>
                 <option value='A-Z'>A-Z</option>
                 <option value='Z-A'>Z-A</option>
             </select>

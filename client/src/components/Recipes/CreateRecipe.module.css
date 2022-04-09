@@ -17,7 +17,7 @@
     width: 75%;
     height: auto;
     padding-top: 5px;
-    background-color: #a3601dbb;
+    background-color: #647332;
     border-radius: 15px 50px 30px
 }
 #h1{
@@ -25,7 +25,7 @@
 }
 
 .form{
-    background-color: #daa672; 
+    background-color: #f77f00; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,7 +61,7 @@
     display: flex;
     justify-content: center;
     font-size: large;
-    color: #000;
+    color: #000000;
     font-weight: bold;
 }
 

@@ -1,5 +1,5 @@
 
-#navBar{
+.navBar{
     background: linear-gradient(180deg, rgba(0,0,0,0.4544527283569678) 97%, rgba(0,0,0,0) 100%);     
     position: relative;
 }
@@ -20,14 +20,22 @@
     color: #ffffff;
 }
 
+#Link_button{
+    text-decoration: none;
+    display: inline-flex;
+    margin-left: 60px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
 #button_back{
+    font-size: smaller;
+    height: 25px;
     color: #ffffff;
     background-color: transparent;
     border: 2px solid #ffffff;
     border-radius: 5px;
-    margin: 10px 30px;
-    height: 35px;
-    font-size: larger;
+    margin: 5px 3px;
 }
 
 #button_back:hover{
@@ -176,4 +184,18 @@
     width: 90%;
     margin: 0 auto;
     margin-bottom: 30px;
+}
+
+.cargando_msg{
+    position: relative;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+}
+
+#msg_recipeNotFound{
+    position: relative;
+    color: #ffffff;
+    font-size: 35px;
+    text-align: center;
 }
