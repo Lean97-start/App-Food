@@ -40,3 +40,13 @@
     background-color: #ffffff;
     transition: .5;
 }
+
+
+#button_Reload_div{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -60px; 
+    margin-left: 60px;  
+}
+
