@@ -50,13 +50,13 @@ const rootReducer = (state = initialValues, {type, payload}) => {
         case ORDER_SCORE:
             
             let arrayOrderScore = [];
-            if(payload === 'asc'){
+            if(payload === 'des'){
                 arrayOrderScore = state.recipes.sort((a,b) => {
                     if(a.score > b.score) return 1
                     else if(a.score < b.score) return -1
                     else return 0
                 })
-            }else if(payload === 'des'){
+            }else if(payload === 'asc'){
                 arrayOrderScore = state.recipes.sort((a,b) => {
                     if(a.score > b.score) return -1
                     else if(a.score < b.score) return 1

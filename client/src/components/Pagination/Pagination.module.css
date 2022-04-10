@@ -6,6 +6,7 @@
     margin: 2px;
     background: radial-gradient(circle, rgba(127,79,36,0.807393904827556) 78%, rgba(147,102,57,0) 100%);
     color: #f0ead2;
+    box-shadow: 3px 0px 5px 0px #000000;
 }
 
 .buttonsPagination > button:hover{
@@ -20,4 +21,13 @@
     justify-content: center;
     margin-bottom: 10px;
     margin-top: 20px;
+}
+
+#active{
+    background-color: #dac05c;
+    color: #f0ead2;
+}
+
+#button_Next_Prev{
+    width: auto;
 }

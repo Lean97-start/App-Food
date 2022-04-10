@@ -25,8 +25,8 @@ router.post('/', async (req, res) =>{ //FUNCIONA
     if(!healthScore){healthScore = null}
     if(!readyInMinutes){readyInMinutes = null}
 
-    name = startCapitalLetter(name)
-    summary = startCapitalLetter(summary)
+    name = startCapitalLetter(name.trim())
+    summary = startCapitalLetter(summary.trim())
     
     try{
         if(name && summary){

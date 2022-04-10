@@ -6,19 +6,25 @@ import style from './Filter.module.css';
 
 export function Filter(props){
     // useEffect(() => props.types_diets(),[props.filterTypesDiets, props.filterScore]); //Ver esto
-    useEffect(() => props.types_diets(),[props.filterTypesDiets, props.filterScore, props.filterCreated]); //VER ESTO!!
+    useEffect(() => props.types_diets(),[]);
 
     function handlerTypesDiets(e){ //Este handler va a tomar el cambio de una opción.
         props.filterTypesDiets(e.target.value)
         props.setPageCurrent(1)
+        props.setMinPageLimit(0)
+        props.setMaxPageLimit(props.pagMostrar)
     }
     function handlerScore(e){
         props.filterScore(e.target.value)
         props.setPageCurrent(1)
+        props.setMinPageLimit(0)
+        props.setMaxPageLimit(props.pagMostrar)
     }
     function handlerCreated(e){
         props.filterCreated(e.target.value)
         props.setPageCurrent(1)
+        props.setMinPageLimit(0)
+        props.setMaxPageLimit(props.pagMostrar)
     }
 
     return(
