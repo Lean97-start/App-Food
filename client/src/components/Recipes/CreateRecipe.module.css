@@ -18,7 +18,8 @@
     height: auto;
     padding-top: 5px;
     background-color: #647332;
-    border-radius: 15px 50px 30px
+    border-radius: 15px 50px 30px;
+    box-shadow: 5px 0px 12px 0px;
 }
 #h1{
     color: aliceblue;

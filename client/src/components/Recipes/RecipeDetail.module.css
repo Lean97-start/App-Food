@@ -18,6 +18,7 @@
     width: 80%;
     border-radius: 20px;
     color: #ffffff;
+    box-shadow: 5px 0px 12px 0px #000000;
 }
 
 #Link_button{

@@ -4,7 +4,7 @@ const {Recipe, Type_diet} = require('../db.js'); //Los importo de db.js porque e
 const axios = require('axios');
 
 const router = Router()
-const api = process.env.API1;
+const api = process.env.API2;
 
 async function addType(array){
     await Promise.all(array.map(type => {Type_diet.findOrCreate({where: {name: type}})}))
@@ -23,7 +23,6 @@ function formatSettings(dataRecipe, fount){ //Funcion para darle formato tanto a
             image: dataRecipe.image,
             readyInMinutes: dataRecipe.readyInMinutes,
             dishTypes: dataRecipe.dishTypes.split("-"),
-            // ingredients: dateRecipe.extendedIngredients.map(ingredient => ingredient.original),
             type_diets: dataRecipe.type_diets.map(type_diet_name => type_diet_name.dataValues.name),
             recipeUser: dataRecipe.recipeUser
         }
@@ -38,7 +37,6 @@ function formatSettings(dataRecipe, fount){ //Funcion para darle formato tanto a
             image: dataRecipe.image,
             readyInMinutes: dataRecipe.readyInMinutes,
             dishTypes: dataRecipe.dishTypes,
-            // ingredients: dateRecipe.extendedIngredients.map(ingredient => ingredient.original),
             type_diets: dataRecipe.diets
         }
     }   

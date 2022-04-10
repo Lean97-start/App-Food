@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: flex-end;
     height: auto;
+    box-shadow: 5px 0px 12px 0px;
 }
 
 #name{
