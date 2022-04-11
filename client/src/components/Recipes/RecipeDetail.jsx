@@ -55,10 +55,12 @@ export function RecipeDetail(props){
                                 </div>
                                 <hr/>
                                 <p>Tipo de plato</p>
-                                <div id={style.elements_diet_dish}>
-                                    {rec.dishTypes.map((dish) =>(
+                                <div id={style.elements_diet_dish}>  
+                                {/* Valido si lo que viene es una cadena o un array */}
+                                    {(typeof rec.dishTypes === 'object')?
+                                        rec.dishTypes.map((dish) =>(
                                         <li key={dish}>{dish}</li>
-                                    ))}
+                                    )): <li key={rec.dishTypes}>{rec.dishTypes}</li>}
                                 </div>
                             </div>
                             <div className={style.steps_div}>

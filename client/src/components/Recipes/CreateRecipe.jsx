@@ -18,16 +18,13 @@ export function CreateRecipe(props){
         step_by_step:"",
         image:"",
         readyInMinutes: "", 
-        dishTypes: null, 
+        dishTypes: "", 
         type_diets: [],
     })
     useEffect(() => {
         props.getTypesRecipes()
     },[]);
 
-    // useEffect(() => {
-    //     history.push(`/recipes/${props.statePost.id}`)
-    // },[props.statePost])
     
     function handlerChange(e){
         setErrorState(validateForm({...state, [e.target.name]: e.target.value}));
@@ -60,7 +57,7 @@ export function CreateRecipe(props){
              alert(error);}
         else{
             props.postRecipe(state)
-            setState({ name:"", summary: "", score:"", healthScore: "", step_by_step:"", image:"", readyInMinutes: "", dishTypes: null, type_diets: [],})
+            setState({ name:"", summary: "", score:"", healthScore: "", step_by_step:"", image:"", readyInMinutes: "", dishTypes: "", type_diets: [],})
             setErrorState({});
             setButton_Submit_State(true);
             alert("Receta creada con éxito")
@@ -125,7 +122,11 @@ export function CreateRecipe(props){
                         <div id={style.grid_campos}>
 
                             <div id={style.div_container}>
-                                <label id={style.label} htmlFor="inputPasos">Paso a paso (Instrucciones)</label>
+                                <label id={style.label} >Tipo de plato</label>
+                                <textarea value={state.dishTypes} id={style.input} name='dishTypes'  onChange={handlerChange} placeholder='Ingrese el tipo de plato' />
+                            </div>
+                            <div id={style.div_container}>
+                                <label id={style.label} >Paso a paso (Instrucciones)</label>
                                 <textarea value={state.step_by_step} id={style.input} name='step_by_step' cols="30" rows="6" onChange={handlerChange} placeholder='Ingrese los pasos de la receta' />
                             </div>
 

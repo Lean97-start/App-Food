@@ -19,8 +19,7 @@ router.post('/', async (req, res) =>{ //FUNCIONA
     if(!name) return res.status(400).json({msg: "No ingreso ningun nombre para la receta"});
     if(!summary) return res.status(400).json({msg: "No ingreso ningun resumen para la receta"});
     // if(!type_diets) return res.status(400).json({msg: "No selecciono ningun tipo de dieta para la receta"});
-    let dishJoin = dishTypes;
-    (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes = dishJoin.join('-');
+    (!dishTypes)? dishTypes = "No tiene un platillo específico" : dishTypes 
     if(!score){score = null}
     if(!healthScore){healthScore = null}
     if(!readyInMinutes){readyInMinutes = null}
@@ -37,10 +36,11 @@ router.post('/', async (req, res) =>{ //FUNCIONA
         return res.status(500).json({msg: "Ha ocurrido un error en la creación de la receta, inténtelo de nuevo"})
     }
     
-    const searchname_BD = await Recipe.findAll({attributes: ['id'] ,where:{ [Op.and]: [{name}, {summary}, {step_by_step}]}});
-    console.log(searchname_BD[0].dataValues.id)
+    // const searchname_BD = await Recipe.findAll({attributes: ['id'] ,where:{ [Op.and]: [{name}, {summary}, {step_by_step}]}});
+    // console.log(searchname_BD[0].dataValues.id)
     // return res.status(200).json({msg: "Receta creada correctamente."}).redirect('../recipes/'+searchname_BD[0].dataValues.id);
-    return res.status(200).json({msg: "Receta creada correctamente." , id: searchname_BD[0].dataValues.id});
+    // return res.status(200).json({msg: "Receta creada correctamente." , id: searchname_BD[0].dataValues.id});
+    return res.status(200).json({msg: "Receta creada correctamente."})
 })
 
 module.exports = router;

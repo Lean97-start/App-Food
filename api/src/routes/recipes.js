@@ -11,7 +11,7 @@ async function addType(array){
 }
 
 function formatSettings(dataRecipe, fount){ //Funcion para darle formato tanto a lo que me viene de la BD como de la API
-
+    
     if(fount === 'BD'){
         return {
             id: dataRecipe.id,
@@ -22,9 +22,9 @@ function formatSettings(dataRecipe, fount){ //Funcion para darle formato tanto a
             step_by_step: dataRecipe.step_by_step,
             image: dataRecipe.image,
             readyInMinutes: dataRecipe.readyInMinutes,
-            dishTypes: dataRecipe.dishTypes.split("-"),
+            dishTypes: dataRecipe.dishTypes,
             type_diets: dataRecipe.type_diets.map(type_diet_name => type_diet_name.dataValues.name),
-            recipeUser: dataRecipe.recipeUser
+            recipeUser: dataRecipe.recipeUser,
         }
     }else if(fount === 'API'){
         return {
