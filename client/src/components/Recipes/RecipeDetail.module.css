@@ -81,6 +81,7 @@
     font-weight: bold;
     padding: 10px 0;
     
+    
 }
 
 #readyInMinutes{
@@ -123,6 +124,7 @@
 .summary_div > #summary{
     width: 85%;
     margin: 0 auto;
+    overflow: auto;
 }
 
 #diets_RecipeDetail{
@@ -185,6 +187,8 @@
     width: 90%;
     margin: 0 auto;
     margin-bottom: 30px;
+    height: auto;
+    overflow: auto;
 }
 
 .cargando_msg{

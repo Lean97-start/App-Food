@@ -67,12 +67,7 @@ export function CreateRecipe(props){
             history.push('/recipes')
         }
     }
-    // if(props.statePost.id){
-    //     alert(props.statePost.msg)
-    //     props.limpiarStatePost()
-    //     history.push('/recipes/'+props.statePost.id)
-    // }
-
+    
 
     return(
         <div>
@@ -159,11 +154,11 @@ export function validateForm(data){
     let errors ={}; //Objeto para settear los errores.
 
     if(data.name === ""){errors.name = "No ha ingresado ningún nombre para la receta"}
-    else if(!/^[A-Za-z0-9\s]+$/g.test(data.name)){errors.name = "No debe contener ningún cáracter especial"} //No debe contener caracteres especiales y debe contener letras
+    // else if(!/^[A-Za-z0-9\s]+$/g.test(data.name)){errors.name = "No debe contener ningún cáracter especial"} //No debe contener caracteres especiales y debe contener letras
     else if(Number.isInteger(parseInt(data.name[0]))){errors.name = "No debe comenzar con números"}
     
     if(data.summary === ""){errors.summary = "No ha ingresado ningún resumen para la receta"}
-    else if(!/^[A-Za-z0-9\s]+$/g.test(data.summary)){errors.summary = "No debe contener ningún cáracter especial"} //debe contener caracteres alfanumericos y no solamente números
+    // else if(!/^[A-Za-z0-9\s]+$/g.test(data.summary)){errors.summary = "No debe contener ningún cáracter especial"} //debe contener caracteres alfanumericos y no solamente números
     else if(Number.isInteger(parseInt(data.summary[0]))){errors.summary = "No debe comenzar con números"}
     
     if(!/^(\d{1,2}(\.\d{1,2})?)*$/.test(data.score)){errors.score = "Puntuación solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números

@@ -12,8 +12,11 @@ import Order from '../Filters_Order/Order';
 
 export function Recipes(props) {
 
+  
   let loading = false;
-  useEffect(() => {props.getRecipe(); loading=true}, []);
+  useEffect(() => {
+    props.getRecipe();
+  }, []);
   const [stateOrder, setStateOrder] = useState();
   const [pageCurrent, setPageCurrent] = useState(1); //Lo voy a usar para que inicialmente inicie en 1 y le pueda cambiar el estado
   const [cantRecipePage, setCantRecipePage] = useState(9); //Este state se va a encargar de la cantidad de recetas a renderizar
@@ -21,7 +24,7 @@ export function Recipes(props) {
   const lastRecipePage = cantRecipePage * pageCurrent; //Multiplico la cantidad recetas a renderizar por la pagina en la que estoy. Esta multiplicacion me va a dar el ultimo valor que renderizaria.
   const initialRecipe = lastRecipePage - cantRecipePage; //Al restarle, si le cambio el valor de cantidad de elementos a renderizar me seguira dando el numero de la card inicial.
   if(!props.recipes.msg){
-  var cantPages = props.recipes ? Math.floor(props.recipes.length / cantRecipePage): undefined;
+  var cantPages = props.recipes ? Math.ceil(props.recipes.length / cantRecipePage): undefined;
   var renderizarRecipes = props.recipes? props.recipes.slice(initialRecipe, lastRecipePage): []; //Separo las cards a renderizar del resto de todas las cards para mostrarlas en la pagina actual.
   }
   const [maxPageLimit, setMaxPageLimit] = useState(pagMostrar)
@@ -67,6 +70,9 @@ export function Recipes(props) {
     props.getRecipe();
   }
 
+  if(props.recipes.length || props.allRecipes.length){loading = true;}
+
+
   return (
     <div className={style.homeRecipes}>
       <img id={style.img} src={img} alt="" />
@@ -80,42 +86,44 @@ export function Recipes(props) {
       </div>
       <h1 id={style.title_recipe}>Recetas</h1>
       {(props.recipes.hasOwnProperty('msg'))?
+      // Valida si hay un mensaje en respuesta negativa a una búsqueda por search
         <div>
           <h3 id={style.msg_sinRecetas}>{props.recipes.msg}</h3>
           <button id={style.button_notfoundRecipeBack} onClick={returnNotFoundRecipe}>Regresar</button>
         </div>:
-        (cantPages < pageCurrent && maxPageLimit && loading)?(<h3 id={style.msg_sinRecetas}>No hay recetas para mostrar, disculpe</h3>):
-        (!renderizarRecipes.length)?(<h3 id={style.msg_sinRecetas}>Cargando...</h3>):
-          <div className={style.cardsHome}>
-            {renderizarRecipes.map(({ id, name, image, type_diets }) => (
-              // Renderizo cada una de las recetas
-              <RecipeCard
-                key={id}
-                id={id}
-                name={name}
-                image={image}
-                type_diets={type_diets}
-                />
-            ))}
-          </div>
-        }
-        <Pagination
-          cantPages={cantPages}
-          pageCurrent={pageCurrent} 
-          maxPageLimit={maxPageLimit}
-          minPageLimit={minPageLimit}
-          handlerPrevClick={handlerPrevClick}
-          handlerNextClick={handlerNextClick}
-          handlerNextPagMostrar={handlerNextPagMostrar}
-          handlerPrevPagMostrar={handlerPrevPagMostrar}
-          changePage={changePage} 
-         />
+        (cantPages < pageCurrent && loading && props.recipes.length)?(<h3 id={style.msg_sinRecetas}>No hay recetas para mostrar, disculpe</h3>):
+          (!renderizarRecipes.length && !loading)?(<h3 id={style.msg_sinRecetas}>Cargando...</h3>):
+            (!renderizarRecipes.length)?(<h3 id={style.msg_sinRecetas}>No hay recetas para mostrar</h3>):
+              <div className={style.cardsHome}>
+                {renderizarRecipes.map(({ id, name, image, type_diets }) => (
+                  // Renderizo cada una de las recetas
+                  <RecipeCard
+                    key={id}
+                    id={id}
+                    name={name}
+                    image={image}
+                    type_diets={type_diets}
+                    />
+                ))}
+              </div>
+      }
+      <Pagination
+        cantPages={cantPages}
+        pageCurrent={pageCurrent} 
+        maxPageLimit={maxPageLimit}
+        minPageLimit={minPageLimit}
+        handlerPrevClick={handlerPrevClick}
+        handlerNextClick={handlerNextClick}
+        handlerNextPagMostrar={handlerNextPagMostrar}
+        handlerPrevPagMostrar={handlerPrevPagMostrar}
+        changePage={changePage} 
+        />
     </div>
   );
 }
 
 export const mapStateToProps = (state) => {
-  return { recipes: state.recipes };
+  return { recipes: state.recipes, allRecipes: state.allRecipes };
 };
 export const mapDispatchToProps = (dispatch) => {
   return { getRecipe: (obj_getRecipe) => dispatch(getRecipe(obj_getRecipe)) };

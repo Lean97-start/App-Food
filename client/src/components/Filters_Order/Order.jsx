@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {changeOrder, changeAlphabetical} from '../../actions';
+import {changeOrder, changeAlphabetical, getRecipe} from '../../actions';
 import style from './Order.module.css';
 
 
 export function Order(props){
-
-    
 
     const default_score = "sinOrden"
     function handlerChangeOrder(e){
@@ -43,6 +41,7 @@ export function Order(props){
     function reset() {
         resetOrderAlpha();
         resetOrderScore();
+        props.getRecipe();
     }
     
 
@@ -62,20 +61,18 @@ export function Order(props){
                 <option value='Z-A'>Z-A</option>
             </select>
 
-            <div id={style.navLink_Create}><button onClick={reset} id={style.button}>Restaurar filtros</button></div>
+            <div id={style.navLink_Create}><button onClick={reset} id={style.button}>Restaurar orden</button></div>
 
         </div>
     )
 }
 
-export function mapStateToProsp(state){
-    return{statePost: state.statePost}
-}
 export function mapDispatchToProps(dispatch){
     return{
         changeOrder: (order) => dispatch(changeOrder(order)),
-        changeAlphabetical: (orderAlf) => dispatch(changeAlphabetical(orderAlf))
+        changeAlphabetical: (orderAlf) => dispatch(changeAlphabetical(orderAlf)),
+        getRecipe: () => dispatch(getRecipe())
     }
 }
 
-export default connect(mapStateToProsp, mapDispatchToProps)(Order)
+export default connect(null, mapDispatchToProps)(Order)

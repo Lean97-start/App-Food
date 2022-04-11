@@ -5,7 +5,7 @@ const initialValues = {
     types_diets: [],
     recipe: {},
     statePost: {},
-    AllRecipes : []
+    allRecipes : []
 }
 // let AllRecipes = [];
 const rootReducer = (state = initialValues, {type, payload}) => {
@@ -20,7 +20,7 @@ const rootReducer = (state = initialValues, {type, payload}) => {
         case GET_RECIPES: 
             //Valido si lo que me viene es un ID y le paso solo la receta que pedí
             //Si fuese que pase por query, me trae lo que pedi, y si no le pido por query me traería todo
-            if(!state.AllRecipes.length) state.AllRecipes = payload.recipes.data;
+            if(!state.allRecipes.length) state.allRecipes = payload.recipes.data;
             return (payload.type_passed === 'id')?  
             {...state, recipe: payload.recipes}:
             {...state, recipes: payload.recipes.data}
@@ -31,22 +31,22 @@ const rootReducer = (state = initialValues, {type, payload}) => {
 
         case FILTER_TYPES_DIETS:
             //Si me viene cualquier tipo de dieta, me la va a filtrar las distintas recetas que tengan esa dieta, caso contrario, muestra todo. 
-            if(payload === 'All'){ return {...state, recipes: state.AllRecipes}}
-            else{ return {...state, recipes: state.AllRecipes.filter(recipe => {return recipe.type_diets.includes(payload)})}}
+            if(payload === 'All'){ return {...state, recipes: state.allRecipes}}
+            else{ return {...state, recipes: state.allRecipes.filter(recipe => {return recipe.type_diets.includes(payload)})}}
         
         case FILTER_CREATED:
             
-            if(payload === 'All'){ return {...state, recipes: state.AllRecipes}}
-            else if(payload === "API"){return {...state, recipes: state.AllRecipes.filter(recipe => recipe.recipeUser !== true)}}
-            else {return {...state, recipes: state.AllRecipes.filter(recipe => recipe.recipeUser === true)}}
+            if(payload === 'All'){ return {...state, recipes: state.allRecipes}}
+            else if(payload === "API"){return {...state, recipes: state.allRecipes.filter(recipe => recipe.recipeUser !== true)}}
+            else {return {...state, recipes: state.allRecipes.filter(recipe => recipe.recipeUser === true)}}
 
             
         case FILTER_SCORE:
             
-            if(payload === 'bajo'){return {...state, recipes: state.AllRecipes.filter(recipe => recipe.score <= 10)}}
-            else if(payload === 'medio'){return {...state, recipes: state.AllRecipes.filter(recipe => (recipe.score <= 20 && recipe.score >= 10))}}
-            else if(payload === 'alto'){return {...state, recipes: state.AllRecipes.filter(recipe =>  recipe.score >= 30)}}
-            else{return {...state, recipes: state.AllRecipes}}
+            if(payload === 'bajo'){return {...state, recipes: state.allRecipes.filter(recipe => recipe.score <= 10)}}
+            else if(payload === 'medio'){return {...state, recipes: state.allRecipes.filter(recipe => (recipe.score <= 20 && recipe.score >= 10))}}
+            else if(payload === 'alto'){return {...state, recipes: state.allRecipes.filter(recipe =>  recipe.score >= 30)}}
+            else{return {...state, recipes: state.allRecipes}}
         
         case ORDER_SCORE:
             
