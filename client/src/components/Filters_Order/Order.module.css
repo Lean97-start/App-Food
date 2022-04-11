@@ -10,16 +10,32 @@
     margin-right: -15px;
 }
 
-#score{
+.score{
     height: 20px;
     display: flex;
     flex-direction: row;
     margin: 0px 20px;
 }
 
-#alphabetical{
+.alphabetical{
     height: 20px;
     display: flex;
     flex-direction: row;
     margin: 0px 20px;
+}
+
+
+#button{
+    font-size: smaller;
+    height: 25px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin: 5px 3px;
+}
+#button:hover{
+    color: black;
+    background-color: #ffffff;
+    transition: .5;
 }
