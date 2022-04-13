@@ -21,8 +21,9 @@ export function CreateRecipe(props){
         dishTypes: "", 
         type_diets: [],
     })
+
     useEffect(() => {
-        props.getTypesRecipes()
+        props.getTypesRecipes();
     },[]);
 
     
@@ -35,7 +36,7 @@ export function CreateRecipe(props){
 
     function checked(e){
         let array_types = state.type_diets; //Arreglo aux para poder sincronizar los datos y settearlos despues de verificar.
-        validateForm(state)
+        // validateForm(state)
         if(e.target.checked){
             let aux = array_types.includes(e.target.value);
             if(!aux){array_types.push(e.target.value)}
@@ -123,7 +124,9 @@ export function CreateRecipe(props){
 
                             <div id={style.div_container}>
                                 <label id={style.label} >Tipo de plato</label>
-                                <textarea value={state.dishTypes} id={style.input} name='dishTypes'  onChange={handlerChange} placeholder='Ingrese el tipo de plato' />
+                                <input value={state.dishTypes} id={style.input} name='dishTypes'  onChange={handlerChange} placeholder='Ingrese el tipo de plato' />
+                                {stateError.dishTypes && <p className={style.danger}>{stateError.dishTypes}</p>}
+
                             </div>
                             <div id={style.div_container}>
                                 <label id={style.label} >Paso a paso (Instrucciones)</label>
@@ -162,6 +165,8 @@ export function validateForm(data){
     // else if(!/^[A-Za-z0-9\s]+$/g.test(data.summary)){errors.summary = "No debe contener ningún cáracter especial"} //debe contener caracteres alfanumericos y no solamente números
     else if(Number.isInteger(parseInt(data.summary[0]))){errors.summary = "No debe comenzar con números"}
     
+    if(!/[a-zA-Z ]{1,254}/.test(data.dishTypes)){errors.dishTypes = "Platos solo acepta letras y espacios"}
+
     if(!/^(\d{1,2}(\.\d{1,2})?)*$/.test(data.score)){errors.score = "Puntuación solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números
     
     if(!/^(\d{1,2}(\.\d{1,2})?)*$/.test(data.healthScore)){errors.healthScore = "Comida saludable solo acepta números enteros de 0 a 100"}//debe contener caracteres letras, solamente números

@@ -23,7 +23,7 @@ export function Recipes(props) {
   const [pagMostrar, setPagMostrar] = useState(5) //Lo uso para mostrar la cantidad de paginas por vez
   const lastRecipePage = cantRecipePage * pageCurrent; //Multiplico la cantidad recetas a renderizar por la pagina en la que estoy. Esta multiplicacion me va a dar el ultimo valor que renderizaria.
   const initialRecipe = lastRecipePage - cantRecipePage; //Al restarle, si le cambio el valor de cantidad de elementos a renderizar me seguira dando el numero de la card inicial.
-  if(!props.recipes.msg){
+  if(!props.recipes.msg){// Valida si hay un mensaje en respuesta negativa a una búsqueda por search
   var cantPages = props.recipes ? Math.ceil(props.recipes.length / cantRecipePage): undefined;
   var renderizarRecipes = props.recipes? props.recipes.slice(initialRecipe, lastRecipePage): []; //Separo las cards a renderizar del resto de todas las cards para mostrarlas en la pagina actual.
   }
@@ -59,7 +59,7 @@ export function Recipes(props) {
    }
   }
   function handlerPrevPagMostrar(){
-    if(0 <= maxPageLimit - pagMostrar){
+    if(0 <= minPageLimit - pagMostrar){
       setMaxPageLimit(maxPageLimit - pagMostrar)
       setMinPageLimit(minPageLimit - pagMostrar)
       setPageCurrent(minPageLimit - pagMostrar+1); 

@@ -38,7 +38,6 @@ router.post('/', async (req, res) =>{ //FUNCIONA
     
     // const searchname_BD = await Recipe.findAll({attributes: ['id'] ,where:{ [Op.and]: [{name}, {summary}, {step_by_step}]}});
     // console.log(searchname_BD[0].dataValues.id)
-    // return res.status(200).json({msg: "Receta creada correctamente."}).redirect('../recipes/'+searchname_BD[0].dataValues.id);
     // return res.status(200).json({msg: "Receta creada correctamente." , id: searchname_BD[0].dataValues.id});
     return res.status(200).json({msg: "Receta creada correctamente."})
 })

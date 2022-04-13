@@ -15,17 +15,6 @@ router.get('/', (req, res) =>{ //FUNCIONA
     .then(type => Type_diet.findAll())
     //En caso de que no se cumpla la promesa, se ejecutara la parte reject.
     .then(response => {res.send(response)}, error => res.status(404).json({msg: "No se encontraron los tipos de dietas"}));
-
-    //Podría hacerlo con Asyc Await:
-    // try{
-    //     //Por cada elemento del Array voy a buscar si ya existe o sino, lo voy a crear. Se va a ejecutar en una primera instancia.
-    //     types_diet.forEach(type => {
-    //            Type_diet.findOrCreate({where: {name: type}}) 
-    //     })
-    // }catch(e){console.log(e)}
-    // const type_find = await Type_diet.findAll() //Me voy a traer todos los tipos que haya en la base de datos
-    // res.send(type_find);
-
 })
 
 
