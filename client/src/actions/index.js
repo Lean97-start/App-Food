@@ -61,7 +61,3 @@ export function postRecipe(payload){
         .then((response) => dispatch({type: CREATE_RECIPE, payload: response.data}), (response) => dispatch({type: CREATE_RECIPE, payload: response.data}))       
     }
 }
-
-export function limpiarStatePost(){
-    return {type: "limpiarStatePost"}
-}

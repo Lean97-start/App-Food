@@ -31,15 +31,16 @@ export function Filter(props){
         <div className={style.allFilters}>
             {/* Selección de score */}
             <p>Score:</p>
-            <select id={style.score} onChange={handlerScore}>
+            <select defaultValue={'All'} id={style.score} onChange={handlerScore}>
                 <option value='All'>All</option>
                 <option value='alto'>Alto</option>
                 <option value='medio'>Medio</option>
                 <option value='bajo'>Bajo</option>
             </select>
 
+            {/* Selección de receta */}
             <p>Mostrar recetas:</p>
-            <select id={style.recipe} onChange={handlerCreated}>
+            <select defaultValue={'All'} id={style.recipe} onChange={handlerCreated}>
                 <option value='All'>All</option>
                 <option value='API'>API</option>
                 <option value='My_recipes'>My recipes</option>
@@ -47,7 +48,7 @@ export function Filter(props){
 
             {/* Selección de Diets */}
             <p>Tipo de dieta:</p>
-            <select id={style.diets} onChange={handlerTypesDiets}>
+            <select defaultValue={"All"} id={style.diets} onChange={handlerTypesDiets}>
                 <option key={"All"} value={"All"}>All</option>
                 {!props.getTypesDiets? null : props.getTypesDiets.map(type => {
                     return(

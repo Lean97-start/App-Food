@@ -1,13 +1,14 @@
 import React, {useEffect, useState}from 'react'
 import { connect } from 'react-redux'
-import { Link, useHistory  } from 'react-router-dom';
-import { getTypesRecipes , postRecipe, limpiarStatePost} from '../../actions';
+import { Link, Redirect} from 'react-router-dom';
+import { getTypesRecipes , postRecipe} from '../../actions';
 import style from '../Recipes/CreateRecipe.module.css';
 import img from '../../assets/img_bkg_create.jpg'
 
 
 export function CreateRecipe(props){
-    let history = useHistory()
+    
+    const [redirect, setRedirect] = useState(false)
     const [button_Submit_State, setButton_Submit_State] = useState(true)
     const [stateError, setErrorState] = useState({})
     const [state, setState] = useState({
@@ -18,7 +19,7 @@ export function CreateRecipe(props){
         step_by_step:"",
         image:"",
         readyInMinutes: "", 
-        dishTypes: "", 
+        dishTypes: " ", 
         type_diets: [],
     })
 
@@ -58,11 +59,11 @@ export function CreateRecipe(props){
              alert(error);}
         else{
             props.postRecipe(state)
-            setState({ name:"", summary: "", score:"", healthScore: "", step_by_step:"", image:"", readyInMinutes: "", dishTypes: "", type_diets: [],})
+            setState({ name:"", summary: "", score:"", healthScore: "", step_by_step:"", image:"", readyInMinutes: "", dishTypes: " ", type_diets: [],})
             setErrorState({});
             setButton_Submit_State(true);
             alert("Receta creada con éxito")
-            history.push('/recipes')
+            setRedirect(true);
         }
     }
     
@@ -147,6 +148,7 @@ export function CreateRecipe(props){
                         </div>
                         <button disabled={button_Submit_State} id={style.button_submit} type='submit'>Crear</button>
                     </form>
+                   {redirect && <Redirect to='/recipes'/>}
                 </div>
             </div>    
         </div>
@@ -182,14 +184,12 @@ export function validateForm(data){
 export function mapStateToProps(state){
     return {
         getTypesDiets: state.types_diets,
-        statePost: state.statePost,
     }
 }
 export function mapDispatchToProps(dispatch){
     return {
         getTypesRecipes: () => dispatch(getTypesRecipes()),
         postRecipe: (datas) => dispatch(postRecipe(datas)),
-        limpiarStatePost: () => dispatch(limpiarStatePost())
     }
 }
 

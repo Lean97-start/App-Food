@@ -4,7 +4,7 @@ const {Recipe, Type_diet} = require('../db.js'); //Los importo de db.js porque e
 const axios = require('axios');
 
 const router = Router()
-const api = process.env.API3;
+const api = process.env.API1;
 
 async function addType(array){
     await Promise.all(array.map(type => {Type_diet.findOrCreate({where: {name: type}})}))

@@ -4,7 +4,6 @@ const initialValues = {
     recipes: [],
     types_diets: [],
     recipe: {},
-    statePost: {},
     allRecipes : []
 }
 // let AllRecipes = [];

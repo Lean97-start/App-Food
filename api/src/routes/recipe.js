@@ -32,6 +32,7 @@ router.post('/', async (req, res) =>{ //FUNCIONA
             const recipe_created = await Recipe.create({name, summary, score, healthScore, step_by_step, image, readyInMinutes, dishTypes});
             await recipe_created.setType_diets(type_diets)//Me va a vincular el o los id/s  del tipo de dieta a la receta.
         } 
+        return res.status(200).json({msg: "Receta creada correctamente."})
     }catch(e){
         return res.status(500).json({msg: "Ha ocurrido un error en la creación de la receta, inténtelo de nuevo"})
     }
@@ -39,7 +40,6 @@ router.post('/', async (req, res) =>{ //FUNCIONA
     // const searchname_BD = await Recipe.findAll({attributes: ['id'] ,where:{ [Op.and]: [{name}, {summary}, {step_by_step}]}});
     // console.log(searchname_BD[0].dataValues.id)
     // return res.status(200).json({msg: "Receta creada correctamente." , id: searchname_BD[0].dataValues.id});
-    return res.status(200).json({msg: "Receta creada correctamente."})
 })
 
 module.exports = router;

@@ -61,7 +61,7 @@ export function Order(props){
                 <option value='Z-A'>Z-A</option>
             </select>
 
-            <div id={style.navLink_Create}><button onClick={reset} id={style.button}>Restaurar orden</button></div>
+            <div id={style.navLink_Create}><button onClick={reset} id={style.button}>Restaurar</button></div>
 
         </div>
     )
