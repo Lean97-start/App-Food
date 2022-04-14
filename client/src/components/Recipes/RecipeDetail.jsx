@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getRecipe } from '../../actions';
+import { getRecipe, removeDetail } from '../../actions';
 // import NavBar from '../NavBar/NavBar.jsx'
 import style from '../Recipes/RecipeDetail.module.css';
 import img from '../../assets/img_bkg_Detail.jpg';
@@ -17,6 +17,9 @@ export function RecipeDetail(props){
 
     let msg = 'No se ha encontrado el ID de la receta';
 
+    function removeDETAIL(){
+        props.removeDetail();
+    }
 
     let rec = props.getRecipe;
     return(
@@ -24,7 +27,7 @@ export function RecipeDetail(props){
             <img id={style.img_back} src={img} alt="" />
             <header>
                 <nav className={style.navBar}>
-                    <Link id={style.Link_button} to={'/recipes'}><button id={style.button_back}>Volver</button></Link>
+                    <Link id={style.Link_button} to={'/recipes'}><button onClick={removeDETAIL} id={style.button_back}>Volver</button></Link>
                 </nav>
             </header>
             {(!rec)? <h2 className={style.cargando_msg}>Cargando...</h2>:
@@ -81,7 +84,9 @@ function mapStateToProps(state){
     return {getRecipe: state.recipe.data}
 }
 function mapDispatchToProps(dispatch){
-    return {recipe_id: (obj_recipe) => dispatch(getRecipe(obj_recipe))}
+    return {recipe_id: (obj_recipe) => dispatch(getRecipe(obj_recipe)),
+        removeDetail : () => dispatch(removeDetail())
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetail)

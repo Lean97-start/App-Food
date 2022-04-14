@@ -14,6 +14,9 @@
     display: flex;
     flex-direction: row;
     margin: 0px 20px;
+    background-color: #936639;
+    color: #ffffff;
+    border-radius: 5px;
 }
 
 #recipe{
@@ -21,6 +24,9 @@
     display: flex;
     flex-direction: row;
     margin: 0px 20px;
+    background-color: #936639;
+    color: #ffffff;
+    border-radius: 5px;
 }
 
 #diets{
@@ -28,5 +34,8 @@
     display: flex;
     flex-direction: row;
     margin: 0px 20px;
+    background-color: #936639;
+    color: #ffffff;
+    border-radius: 5px;
 }
 

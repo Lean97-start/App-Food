@@ -12,6 +12,11 @@
 #inpName{
     border-radius: 7px;
     font-size: 15px;
+    background-color: #936639;
+    color: #ffffff;
+}
+#inpName::placeholder{
+    color: #ffffff;
 }
 
 #button_submit{

@@ -8,7 +8,8 @@ export const GET_RECIPES = 'GET_RECIPES',
  CREATE_RECIPE = "CREATE_RECIPE",
  FILTER_CREATED = "FILTER_CREATED",
  ORDER_SCORE = "ORDER_SCORE",
- ORDER_ALPHABETICAL = "ORDER_ALPHABETICAL";
+ ORDER_ALPHABETICAL = "ORDER_ALPHABETICAL",
+ REMOVEDETAIL = 'REMOVEDETAIL';
 
 export function getTypesRecipes(){
     return function(dispatch){ //Con esta function creator, me traigo todos los tipos de recetas.
@@ -60,4 +61,8 @@ export function postRecipe(payload){
         // .then(() => console.log("Receta creada con éxito"), () => console.log("Ocurrío un error en la creación de la receta, intente de nuevo"))
         .then((response) => dispatch({type: CREATE_RECIPE, payload: response.data}), (response) => dispatch({type: CREATE_RECIPE, payload: response.data}))       
     }
+}
+
+export function removeDetail(){
+    return {type: REMOVEDETAIL}
 }

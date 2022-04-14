@@ -49,10 +49,6 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: null,
     },
-    // ingredients:{
-    //   type: DataTypes.TEXT,
-    //   allowNull: true  
-    // },
     recipeUser: { //Verifico si está en la BD la receta.
       type: DataTypes.BOOLEAN,
       defaultValue: true,

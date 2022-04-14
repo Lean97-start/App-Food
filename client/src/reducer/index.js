@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_TYPES_DIETS , FILTER_TYPES_DIETS, FILTER_SCORE, CREATE_RECIPE, FILTER_CREATED, ORDER_SCORE, ORDER_ALPHABETICAL} from "../actions";
+import { GET_RECIPES, GET_TYPES_DIETS , FILTER_TYPES_DIETS, FILTER_SCORE, CREATE_RECIPE, FILTER_CREATED, ORDER_SCORE, ORDER_ALPHABETICAL, REMOVEDETAIL} from "../actions";
 
 const initialValues = {
     recipes: [],
@@ -19,7 +19,8 @@ const rootReducer = (state = initialValues, {type, payload}) => {
         case GET_RECIPES: 
             //Valido si lo que me viene es un ID y le paso solo la receta que pedí
             //Si fuese que pase por query, me trae lo que pedi, y si no le pido por query me traería todo
-            if(!state.allRecipes.length) state.allRecipes = payload.recipes.data;
+            // if(!state.allRecipes.length) state.allRecipes = payload.recipes.data;
+            state.allRecipes = payload.recipes.data;
             return (payload.type_passed === 'id')?  
             {...state, recipe: payload.recipes}:
             {...state, recipes: payload.recipes.data}
@@ -81,6 +82,9 @@ const rootReducer = (state = initialValues, {type, payload}) => {
                 })
             }
             return {...state, recipes: arrayOrderAlphabetical}
+
+        case REMOVEDETAIL: 
+            return {...state, recipe: {}}
 
         default: 
             return state;
