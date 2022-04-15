@@ -1,5 +1,5 @@
 import axios from 'axios'
-const local = 'http://localhost:3001/';
+// const local = 'http://localhost:3001/';
 export const GET_RECIPES = 'GET_RECIPES',
  GET_TYPES_DIETS = 'GET_TYPES_DIETS',
  FILTER_TYPES_DIETS = "FILTER_TYPES_DIETS",
@@ -13,7 +13,7 @@ export const GET_RECIPES = 'GET_RECIPES',
 
 export function getTypesRecipes(){
     return function(dispatch){ //Con esta function creator, me traigo todos los tipos de recetas.
-        return axios.get(`${local}types`)
+        return axios.get(`/types`)
         .then(response => dispatch({type: GET_TYPES_DIETS, payload: response}))
         .catch(e => console.log(e))
     }
@@ -25,13 +25,13 @@ export function getRecipe(payload){
     //Si solo le paso el id, me va a traer la receta indicada.
     return function(dispatch){
         if(!payload){
-            return axios.get(`${local}recipes/`)
+            return axios.get(`/recipes/`)
             .then(recipes => dispatch({type: GET_RECIPES, payload: {recipes: recipes, type_passed: null}}))
             .catch(e => console.log(e))
         }
         else{    
             //payload.data me da el valor del query o el id. Y en type_passed le digo explicitamente que es. 
-            return axios.get(`${local}recipes${payload.data}`)
+            return axios.get(`/recipes${payload.data}`)
             .then(recipes => dispatch({type: GET_RECIPES, payload: {recipes: recipes, type_passed: payload.type_passed}}))
             .catch(e => alert("No se ha encontrado ninguna receta con ese nombre."))}
     }
@@ -57,7 +57,7 @@ export function changeAlphabetical(payload){
 export function postRecipe(payload){
     //Recibe los datos que vienen del formulario y lo paso por medio del payload al backend.
     return (dispatch) => {
-        return axios.post(`${local}recipe`, payload)
+        return axios.post(`/recipe`, payload)
         // .then(() => console.log("Receta creada con éxito"), () => console.log("Ocurrío un error en la creación de la receta, intente de nuevo"))
         .then((response) => dispatch({type: CREATE_RECIPE, payload: response.data}), (response) => dispatch({type: CREATE_RECIPE, payload: response.data}))       
     }
