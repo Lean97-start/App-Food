@@ -17,6 +17,8 @@
     background-color: #936639;
     color: #ffffff;
     border-radius: 5px;
+    border:1px solid #d9d9d9;
+    overflow: hidden;
 }
 
 .recipe{
@@ -27,6 +29,8 @@
     background-color: #936639;
     color: #ffffff;
     border-radius: 5px;
+    border:1px solid #d9d9d9;
+    overflow: hidden;
 }
 
 .diets{
@@ -37,5 +41,7 @@
     background-color: #936639;
     color: #ffffff;
     border-radius: 5px;
+    border:1px solid #d9d9d9;
+    overflow: hidden;
 }
 
