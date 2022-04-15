@@ -13,25 +13,50 @@ export function Filter(props){
         props.setPageCurrent(1)
         props.setMinPageLimit(0)
         props.setMaxPageLimit(props.pagMostrar)
+        resetScore()
+        resetCreated()
     }
     function handlerScore(e){
         props.filterScore(e.target.value)
         props.setPageCurrent(1)
         props.setMinPageLimit(0)
         props.setMaxPageLimit(props.pagMostrar)
+        resetTypesDiets()
+        resetCreated()
     }
     function handlerCreated(e){
         props.filterCreated(e.target.value)
         props.setPageCurrent(1)
         props.setMinPageLimit(0)
         props.setMaxPageLimit(props.pagMostrar)
+        resetScore()
+        resetTypesDiets()
+    }
+
+    function resetTypesDiets(){
+        var score = document.getElementById('resetTypesDiets')
+        for (var i = 0, l = score.length; i < l; i++) {
+            score[i].selected = score[i].defaultSelected;
+        }
+    }
+    function resetScore(){
+        var score = document.getElementById('resetScore')
+        for (var i = 0, l = score.length; i < l; i++) {
+            score[i].selected = score[i].defaultSelected;
+        }
+    }
+    function resetCreated(){
+        var score = document.getElementById('resetCreated')
+        for (var i = 0, l = score.length; i < l; i++) {
+            score[i].selected = score[i].defaultSelected;
+        }
     }
 
     return(
         <div className={style.allFilters}>
             {/* Selección de score */}
             <p>Score:</p>
-            <select defaultValue={'All'} id={style.score} onChange={handlerScore}>
+            <select defaultValue={'All'} className={style.score} id="resetScore" onChange={handlerScore}>
                 <option value='All'>All</option>
                 <option value='alto'>Alto</option>
                 <option value='medio'>Medio</option>
@@ -40,7 +65,7 @@ export function Filter(props){
 
             {/* Selección de receta */}
             <p>Mostrar recetas:</p>
-            <select defaultValue={'All'} id={style.recipe} onChange={handlerCreated}>
+            <select defaultValue={'All'} className={style.recipe} id="resetCreated" onChange={handlerCreated}>
                 <option value='All'>All</option>
                 <option value='API'>API</option>
                 <option value='My_recipes'>My recipes</option>
@@ -48,7 +73,7 @@ export function Filter(props){
 
             {/* Selección de Diets */}
             <p>Tipo de dieta:</p>
-            <select defaultValue={"All"} id={style.diets} onChange={handlerTypesDiets}>
+            <select defaultValue={"All"} className={style.diets} id="resetTypesDiets" onChange={handlerTypesDiets}>
                 <option key={"All"} value={"All"}>All</option>
                 {!props.getTypesDiets? null : props.getTypesDiets.map(type => {
                     return(

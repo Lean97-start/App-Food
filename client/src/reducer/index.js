@@ -32,20 +32,20 @@ const rootReducer = (state = initialValues, {type, payload}) => {
         case FILTER_TYPES_DIETS:
             //Si me viene cualquier tipo de dieta, me la va a filtrar las distintas recetas que tengan esa dieta, caso contrario, muestra todo. 
             if(payload === 'All'){ return {...state, recipes: state.allRecipes}}
-            else{ return {...state, recipes: state.allRecipes.filter(recipe => {return recipe.type_diets.includes(payload)})}}
+            else{return (state.allRecipes.length)? {...state, recipes: state.allRecipes.filter(recipe => {return recipe.type_diets.includes(payload)})}: state}
         
         case FILTER_CREATED:
             
             if(payload === 'All'){ return {...state, recipes: state.allRecipes}}
-            else if(payload === "API"){return {...state, recipes: state.allRecipes.filter(recipe => recipe.recipeUser !== true)}}
-            else {return {...state, recipes: state.allRecipes.filter(recipe => recipe.recipeUser === true)}}
+            else if(payload === "API"){return (state.allRecipes.length)? {...state, recipes: state.allRecipes.filter(recipe => recipe.recipeUser !== true)}: state}
+            else {return (state.allRecipes.length)? {...state, recipes: state.allRecipes.filter(recipe => recipe.recipeUser === true)}: state}
 
             
         case FILTER_SCORE:
             
-            if(payload === 'bajo'){return {...state, recipes: state.allRecipes.filter(recipe => recipe.score <= 10)}}
-            else if(payload === 'medio'){return {...state, recipes: state.allRecipes.filter(recipe => (recipe.score <= 20 && recipe.score >= 10))}}
-            else if(payload === 'alto'){return {...state, recipes: state.allRecipes.filter(recipe =>  recipe.score >= 30)}}
+            if(payload === 'bajo'){return (state.allRecipes.length)? {...state, recipes: state.allRecipes.filter(recipe => recipe.score <= 10)}: state}
+            else if(payload === 'medio'){return (state.allRecipes.length)? {...state, recipes: state.allRecipes.filter(recipe => (recipe.score <= 20 && recipe.score >= 10))}: state}
+            else if(payload === 'alto'){return (state.allRecipes.length)? {...state, recipes: state.allRecipes.filter(recipe =>  recipe.score >= 30)}: state}
             else{return {...state, recipes: state.allRecipes}}
         
         case ORDER_SCORE:

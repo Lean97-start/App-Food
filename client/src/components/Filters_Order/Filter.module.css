@@ -9,7 +9,7 @@
     margin-right: -15px;
 }
 
-#score{
+.score{
     height: 20px;
     display: flex;
     flex-direction: row;
@@ -19,7 +19,7 @@
     border-radius: 5px;
 }
 
-#recipe{
+.recipe{
     height: 20px;
     display: flex;
     flex-direction: row;
@@ -29,7 +29,7 @@
     border-radius: 5px;
 }
 
-#diets{
+.diets{
     height: 20px;
     display: flex;
     flex-direction: row;
