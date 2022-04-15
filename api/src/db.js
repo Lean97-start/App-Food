@@ -3,9 +3,10 @@ const seq = require("sequelize").Sequelize;
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
-// process.env.NODE_ENV === "production"
-  // ?
-let sequelize = new seq({
+let sequelize = 
+
+process.env.NODE_ENV === "production"
+  ? new seq({
         database: DB_NAME,
         dialect: "postgres",
         host: DB_HOST,
@@ -27,10 +28,10 @@ let sequelize = new seq({
         },
         ssl: true,
       })
-    // : new Sequelize(
-    //     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`,
-    //     { logging: false, native: false }
-    //   );
+    : new seq(
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`,
+        { logging: false, native: false }
+      );
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
 //   logging: false, // set to console.log to see the raw SQL queries
