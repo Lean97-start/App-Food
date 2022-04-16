@@ -75,7 +75,7 @@ export function Recipes(props) {
 
   return (
     <div className={style.homeRecipes}>
-      {(!props.recipes.length)? alert("Lamentablemente la API que se consume tiene las peticiones limitadas, por lo cúal, si solo dice 'cargando...' significa que se acabaron"): null}
+      {/* {(!props.recipes.length)? alert("Lamentablemente la API que se consume tiene las peticiones limitadas, por lo cúal, si solo dice 'cargando...' significa que se acabaron"): null} */}
       <img id={style.img} src={img} alt="" />
       <div id={style.gradient} />
       <header className={style.header}>
